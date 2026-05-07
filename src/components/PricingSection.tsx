@@ -127,7 +127,7 @@ const PricingSection = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-3 items-end"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-3 items-start"
           >
             {plansByConnection[activeTab].map((plan, i) =>
               plan.recommended ? (
@@ -137,7 +137,7 @@ const PricingSection = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.07 }}
-                  className="relative p-px rounded-2xl lg:-mt-5 lg:mb-0"
+                  className="relative p-px rounded-2xl"
                   style={{ background: "var(--gradient-primary)" }}
                 >
                   {/* Best value badge */}
