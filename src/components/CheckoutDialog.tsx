@@ -7,21 +7,19 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  CheckCircle, Loader2, Shield, Zap, Lock, ChevronDown, MessageCircle,
-} from "lucide-react";
+import { CheckCircle, Loader2, ChevronDown, MessageCircle, Check } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 
 const WHATSAPP = "14702642482";
 
 const paymentMethods = [
-  { value: "cards",         label: "Card",       emoji: "💳" },
-  { value: "paypal",        label: "PayPal",     emoji: "🅿️" },
-  { value: "e-transfer",    label: "E-Transfer", emoji: "🏦" },
-  { value: "crypto",        label: "Crypto",     emoji: "₿"  },
-  { value: "moneygram",     label: "MoneyGram",  emoji: "💰" },
-  { value: "western-union", label: "W. Union",   emoji: "🌐" },
+  { value: "card",          label: "Card"        },
+  { value: "paypal",        label: "PayPal"      },
+  { value: "e-transfer",    label: "E-Transfer"  },
+  { value: "crypto",        label: "Crypto"      },
+  { value: "moneygram",     label: "MoneyGram"   },
+  { value: "western-union", label: "Western Union"},
 ];
 
 interface CheckoutDialogProps {
@@ -39,15 +37,15 @@ const CheckoutDialog = ({
   planName, planPrice, connections,
   planOldPrice, planPerMonth,
 }: CheckoutDialogProps) => {
-  const [fullName, setFullName]       = useState("");
-  const [email, setEmail]             = useState("");
-  const [whatsapp, setWhatsapp]       = useState("");
+  const [fullName, setFullName]           = useState("");
+  const [email, setEmail]                 = useState("");
+  const [whatsapp, setWhatsapp]           = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
-  const [promoCode, setPromoCode]     = useState("");
-  const [showPromo, setShowPromo]     = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess]     = useState(false);
-  const [orderId, setOrderId]         = useState("");
+  const [promoCode, setPromoCode]         = useState("");
+  const [showPromo, setShowPromo]         = useState(false);
+  const [isSubmitting, setIsSubmitting]   = useState(false);
+  const [isSuccess, setIsSuccess]         = useState(false);
+  const [orderId, setOrderId]             = useState("");
 
   const resetForm = () => {
     setFullName(""); setEmail(""); setWhatsapp(""); setPaymentMethod("");
@@ -58,7 +56,7 @@ const CheckoutDialog = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!fullName || !email || !whatsapp || !paymentMethod) {
-      toast.error("Please fill in all fields");
+      toast.error("Please fill in all required fields");
       return;
     }
     setIsSubmitting(true);
@@ -68,7 +66,7 @@ const CheckoutDialog = ({
         body: { fullName, email, whatsapp, paymentMethod, planName, planPrice, connections, promoCode, orderId: newOrderId },
       });
     } catch {
-      // Supabase failure handled silently — WhatsApp follow-up is the primary channel
+      // silent — WhatsApp follow-up is the primary channel
     } finally {
       setOrderId(newOrderId);
       setIsSuccess(true);
@@ -76,7 +74,7 @@ const CheckoutDialog = ({
     }
   };
 
-  /* ── Success state ───────────────────────────────────────────────────── */
+  /* ── Success state ─────────────────────────────────────────────── */
   if (isSuccess) {
     const waMsg = encodeURIComponent(
       `Hi! I placed order #${orderId} for the ${planName} plan (${connections}) at ${planPrice}. I'm ready to complete my payment.`
@@ -85,57 +83,54 @@ const CheckoutDialog = ({
       <Dialog open={open} onOpenChange={handleClose}>
         <DialogContent className="sm:max-w-md bg-card border-border">
           <DialogHeader className="sr-only">
-            <DialogTitle>Order Received</DialogTitle>
+            <DialogTitle>Order Confirmed</DialogTitle>
             <DialogDescription>Your order has been received.</DialogDescription>
           </DialogHeader>
-          <div className="flex flex-col items-center text-center py-4 gap-4">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
-              <CheckCircle className="h-8 w-8 text-emerald-400" />
+          <div className="flex flex-col items-center text-center py-6 gap-5">
+            <div className="w-14 h-14 rounded-full bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center">
+              <CheckCircle className="h-7 w-7 text-emerald-400" />
             </div>
 
             <div>
-              <h3 className="text-xl font-heading font-bold mb-1">Order Received!</h3>
-              <p className="text-sm text-muted-foreground">We'll activate you as fast as possible.</p>
+              <h3 className="text-xl font-heading font-bold mb-1">Order Confirmed</h3>
+              <p className="text-sm text-muted-foreground">We'll reach out on WhatsApp within a few minutes.</p>
             </div>
 
-            {/* Order ID badge */}
-            <div className="bg-secondary border border-border rounded-lg px-4 py-2 text-sm font-mono w-full text-center">
-              Order <span className="text-primary font-bold">#{orderId}</span>
-              <span className="text-muted-foreground ml-2">· {planName} · {planPrice}</span>
+            {/* Order ID */}
+            <div className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm font-mono text-center">
+              <span className="text-muted-foreground">Order </span>
+              <span className="text-primary font-bold">#{orderId}</span>
+              <span className="text-muted-foreground"> · {planName} · {planPrice}</span>
             </div>
 
-            {/* What happens next */}
-            <div className="w-full bg-secondary/50 border border-border rounded-xl p-4 text-left space-y-3">
-              <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">What happens next</p>
+            {/* Next steps */}
+            <div className="w-full text-left space-y-3">
               {[
-                { icon: "📲", text: "We message you on WhatsApp within 5 minutes" },
-                { icon: "💳", text: "You send payment via your chosen method" },
-                { icon: "🎬", text: "Credentials sent — you're streaming in minutes" },
-              ].map(({ icon, text }) => (
-                <div key={text} className="flex items-center gap-3 text-sm">
-                  <span className="text-base shrink-0">{icon}</span>
-                  <span className="text-foreground">{text}</span>
+                { n: "1", text: "We message you on WhatsApp within 5 minutes" },
+                { n: "2", text: "You send payment via your chosen method" },
+                { n: "3", text: "Credentials sent — you're streaming right away" },
+              ].map(({ n, text }) => (
+                <div key={n} className="flex items-start gap-3">
+                  <span className="w-5 h-5 rounded-full bg-primary/15 border border-primary/30 text-primary text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">
+                    {n}
+                  </span>
+                  <span className="text-sm text-foreground/80">{text}</span>
                 </div>
               ))}
             </div>
 
-            {/* WhatsApp fast-track CTA */}
-            <div className="w-full space-y-2">
-              <p className="text-xs text-muted-foreground">Want to go faster? Message us right now:</p>
-              <a
-                href={`https://wa.me/${WHATSAPP}?text=${waMsg}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
-                <Button className="w-full bg-[#25D366] hover:bg-[#1fbe5c] text-white font-bold gap-2 rounded-full">
-                  <MessageCircle size={16} />
-                  Chat on WhatsApp →
-                </Button>
-              </a>
-            </div>
+            <a
+              href={`https://wa.me/${WHATSAPP}?text=${waMsg}`}
+              target="_blank" rel="noopener noreferrer"
+              className="block w-full"
+            >
+              <Button className="w-full bg-[#25D366] hover:bg-[#1fbe5c] text-white font-semibold gap-2 rounded-xl py-5">
+                <MessageCircle size={16} />
+                Message us on WhatsApp
+              </Button>
+            </a>
 
-            <Button variant="outline" onClick={() => handleClose(false)} className="w-full">
+            <Button variant="ghost" onClick={() => handleClose(false)} className="w-full text-muted-foreground">
               Close
             </Button>
           </div>
@@ -144,137 +139,111 @@ const CheckoutDialog = ({
     );
   }
 
-  /* ── Order form ──────────────────────────────────────────────────────── */
+  /* ── Order form ────────────────────────────────────────────────── */
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-lg bg-card border-border max-h-[90vh] overflow-y-auto">
-        <DialogHeader className="sr-only">
-          <DialogTitle>Complete Your Order</DialogTitle>
-          <DialogDescription>Order {planName} for {planPrice}</DialogDescription>
+      <DialogContent className="sm:max-w-md bg-card border-border max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="font-heading text-lg font-bold">Complete Your Order</DialogTitle>
+          <DialogDescription className="text-muted-foreground text-sm">
+            {planName} · {connections}
+            {planPerMonth && planName !== "1 Month" && (
+              <span className="ml-2 text-primary font-semibold">{planPerMonth}/mo</span>
+            )}
+          </DialogDescription>
         </DialogHeader>
 
-        {/* Zone 1 — Order summary */}
-        <div className="rounded-xl border border-primary/35 bg-gradient-to-br from-primary/12 to-primary/5 p-4">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <p className="font-heading font-bold text-foreground text-base">
-                {planName} · {connections}
-              </p>
-              <div className="flex items-baseline gap-2 mt-1">
-                {planOldPrice && (
-                  <span className="text-sm text-muted-foreground line-through">{planOldPrice}</span>
-                )}
-                <span className="text-2xl font-heading font-bold text-primary">{planPrice}</span>
-                {planPerMonth && planName !== "1 Month" && (
-                  <span className="text-xs text-muted-foreground">({planPerMonth}/mo)</span>
-                )}
-              </div>
-            </div>
-            <div className="shrink-0 text-center bg-primary/20 border border-primary/30 rounded-xl px-3 py-2">
-              <span className="text-primary text-xs font-bold leading-tight block">⚡ Activates</span>
-              <span className="text-primary text-xs font-bold leading-tight block">~30 min</span>
-            </div>
+        {/* Price line */}
+        <div className="flex items-center justify-between py-3 border-y border-border">
+          <span className="text-sm text-muted-foreground">Total</span>
+          <div className="flex items-center gap-2">
+            {planOldPrice && (
+              <span className="text-xs text-muted-foreground line-through">{planOldPrice}</span>
+            )}
+            <span className="text-xl font-heading font-bold text-foreground">{planPrice}</span>
           </div>
         </div>
 
-        {/* Zone 2 — Form */}
-        <form onSubmit={handleSubmit} className="space-y-4 mt-1">
+        <form onSubmit={handleSubmit} className="space-y-4 pt-1">
+
+          {/* Name + Email */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <Label htmlFor="fullName">Full Name</Label>
+              <Label htmlFor="fullName" className="text-sm">Full Name</Label>
               <Input id="fullName" placeholder="John Doe" value={fullName}
                 onChange={(e) => setFullName(e.target.value)} required />
             </div>
             <div className="space-y-1.5">
-              <Label htmlFor="email">Email Address</Label>
+              <Label htmlFor="email" className="text-sm">Email</Label>
               <Input id="email" type="email" placeholder="you@email.com" value={email}
                 onChange={(e) => setEmail(e.target.value)} required />
             </div>
           </div>
 
+          {/* WhatsApp */}
           <div className="space-y-1.5">
-            <Label htmlFor="whatsapp">WhatsApp Number</Label>
+            <Label htmlFor="whatsapp" className="text-sm">WhatsApp Number</Label>
             <Input id="whatsapp" type="tel" placeholder="+1 234 567 8900" value={whatsapp}
               onChange={(e) => setWhatsapp(e.target.value)} required />
+            <p className="text-[11px] text-muted-foreground">We'll send your credentials here.</p>
           </div>
 
-          {/* Payment method — visual cards */}
+          {/* Payment method */}
           <div className="space-y-2">
-            <Label>Payment Method</Label>
-            <div className="grid grid-cols-3 gap-2">
-              {paymentMethods.map(({ value, label, emoji }) => (
+            <Label className="text-sm">Payment Method</Label>
+            <div className="flex flex-wrap gap-2">
+              {paymentMethods.map(({ value, label }) => (
                 <button
                   key={value}
                   type="button"
                   onClick={() => setPaymentMethod(value)}
-                  className={`relative flex flex-col items-center gap-1.5 p-3 rounded-xl border transition-all duration-200 ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-all duration-150 ${
                     paymentMethod === value
-                      ? "border-primary bg-primary/10 shadow-glow"
-                      : "border-border bg-secondary/50 hover:border-primary/40 hover:bg-secondary"
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-border bg-secondary/50 text-muted-foreground hover:border-primary/40 hover:text-foreground"
                   }`}
                 >
-                  {paymentMethod === value && (
-                    <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-primary flex items-center justify-center">
-                      <CheckCircle size={9} className="text-white" />
-                    </div>
-                  )}
-                  <span className="text-xl leading-none">{emoji}</span>
-                  <span className="text-[10px] font-semibold text-center leading-tight">{label}</span>
+                  {paymentMethod === value && <Check size={11} />}
+                  {label}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Promo / referral code */}
+          {/* Promo code */}
           <div>
             <button
               type="button"
               onClick={() => setShowPromo((p) => !p)}
-              className="flex items-center gap-1 text-xs text-primary hover:underline transition-all"
+              className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
-              <ChevronDown
-                size={12}
-                className={`transition-transform duration-200 ${showPromo ? "rotate-180" : ""}`}
-              />
+              <ChevronDown size={12} className={`transition-transform duration-200 ${showPromo ? "rotate-180" : ""}`} />
               Have a promo or referral code?
             </button>
             {showPromo && (
               <Input
                 className="mt-2"
-                placeholder="Enter code (e.g. JOHN10)"
+                placeholder="Enter code"
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
               />
             )}
           </div>
 
-          {/* Zone 3 — Submit + trust */}
+          {/* Submit */}
           <div className="space-y-3 pt-1">
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-gradient-primary text-white font-bold py-6 text-base hover:opacity-90 shadow-glow rounded-full"
+              className="w-full bg-gradient-primary text-white font-bold py-5 hover:opacity-90 shadow-glow rounded-xl"
             >
               {isSubmitting
                 ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Processing...</>
-                : "Place Order — Activate in ~30min →"
+                : "Place Order →"
               }
             </Button>
-
-            <div className="flex items-center justify-center gap-5 text-[11px] text-muted-foreground">
-              <span className="flex items-center gap-1">
-                <Shield size={11} className="text-emerald-400" />7-Day Guarantee
-              </span>
-              <span className="flex items-center gap-1">
-                <Zap size={11} className="text-primary" />Instant Setup
-              </span>
-              <span className="flex items-center gap-1">
-                <Lock size={11} className="text-blue-400" />SSL Secured
-              </span>
-            </div>
-
-            <p className="text-[10px] text-center text-muted-foreground">
-              After submitting, our team contacts you within minutes via WhatsApp with payment details.
+            <p className="text-[11px] text-center text-muted-foreground">
+              🔒 SSL Secured · 7-Day Money-Back Guarantee · Activates in ~30 min
             </p>
           </div>
         </form>
