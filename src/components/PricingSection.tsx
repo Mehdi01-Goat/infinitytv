@@ -127,143 +127,116 @@ const PricingSection = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-3 items-stretch"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch"
           >
-            {plansByConnection[activeTab].map((plan, i) =>
-              plan.recommended ? (
-                /* ── Recommended card ─────────────────────────── */
-                <motion.div
-                  key={plan.duration}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.07 }}
-                  className="relative p-px rounded-2xl h-full"
-                  style={{ background: "var(--gradient-primary)" }}
-                >
-                  {/* Best value badge */}
+            {plansByConnection[activeTab].map((plan, i) => (
+              <motion.div
+                key={plan.duration}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.07 }}
+                className={`relative h-full ${plan.recommended ? "p-px rounded-2xl" : ""}`}
+                style={plan.recommended ? { background: "var(--gradient-primary)" } : {}}
+              >
+                {/* Best value badge */}
+                {plan.recommended && (
                   <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-primary text-white text-[11px] font-black px-5 py-1.5 rounded-full whitespace-nowrap shadow-glow tracking-wide z-10">
                     🏆 BEST VALUE
                   </span>
+                )}
 
-                  <div className="relative rounded-2xl bg-[#0D0D1F] px-5 pt-8 pb-6 h-full flex flex-col">
-                    {/* Plan name + popularity */}
-                    <div className="mb-4">
-                      <h3 className="font-heading text-lg font-bold text-foreground">{plan.duration}</h3>
-                      <p className="text-[10px] text-primary/60 font-semibold uppercase tracking-widest mt-0.5">
-                        🔥 Most popular this week
-                      </p>
-                    </div>
+                {/* Save / flexible badge */}
+                {!plan.recommended && plan.save && (
+                  <span className="absolute -top-3 right-4 bg-emerald-500 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full z-10">
+                    SAVE {plan.save}
+                  </span>
+                )}
+                {!plan.recommended && plan.badge && (
+                  <span className="absolute -top-3 right-4 bg-secondary border border-border text-muted-foreground text-[10px] font-semibold px-2.5 py-0.5 rounded-full z-10">
+                    {plan.badge}
+                  </span>
+                )}
 
-                    {/* Per-month hero price */}
-                    <div className="mb-1">
-                      <div className="flex items-baseline gap-1.5">
-                        <span className="font-heading text-5xl font-black text-gradient leading-none">{plan.perMonth}</span>
-                        <span className="text-muted-foreground text-sm">/mo</span>
-                      </div>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        {plan.oldPrice && <span className="line-through mr-1.5">{plan.oldPrice}</span>}
-                        <span className="text-foreground font-semibold">{plan.price} total</span>
-                      </p>
-                    </div>
+                {/* Card body — identical layout for all 4 */}
+                <div className={`relative flex flex-col h-full rounded-2xl border px-5 pb-6 hover:shadow-glow transition-all duration-300 group ${
+                  plan.recommended
+                    ? "bg-[#0D0D1F] border-transparent pt-8"
+                    : "bg-card border-border hover:border-primary/30 pt-5"
+                }`}>
 
-                    {/* Savings pill */}
-                    {plan.save && plan.saveAmount && (
-                      <div className="inline-flex items-center gap-1.5 bg-emerald-500/15 border border-emerald-500/25 rounded-full px-3 py-1 mb-5 w-fit">
-                        <span className="text-emerald-400 text-xs font-bold">✓ You save {plan.saveAmount} ({plan.save} off)</span>
-                      </div>
+                  {/* Plan name */}
+                  <div className="mb-4">
+                    <h3 className="font-heading text-lg font-bold text-foreground">{plan.duration}</h3>
+                    {plan.recommended && (
+                      <p className="text-[10px] text-primary/60 font-semibold uppercase tracking-widest mt-0.5">🔥 Most popular this week</p>
                     )}
+                  </div>
 
-                    {/* Features */}
-                    <ul className="space-y-2 mb-6 flex-1">
-                      {features.map((f) => (
-                        <li key={f} className="flex items-center gap-2.5 text-sm text-foreground/90">
-                          <span className="w-4 h-4 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center shrink-0">
-                            <Check size={9} className="text-primary" />
-                          </span>
-                          {f}
-                        </li>
-                      ))}
+                  {/* Price */}
+                  <div className="mb-1">
+                    <div className="flex items-baseline gap-1.5">
+                      <span className={`font-heading text-5xl font-black leading-none ${plan.recommended ? "text-gradient" : "text-foreground"}`}>
+                        {plan.perMonth}
+                      </span>
+                      <span className="text-muted-foreground text-sm">/mo</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {plan.oldPrice && <span className="line-through mr-1.5">{plan.oldPrice}</span>}
+                      <span className="text-foreground/70 font-medium">
+                        {plan.duration === "1 Month" ? "Billed monthly" : `${plan.price} total`}
+                      </span>
+                    </p>
+                  </div>
+
+                  {/* Savings line */}
+                  {plan.saveAmount ? (
+                    <p className={`text-xs font-semibold mb-5 ${plan.recommended ? "text-emerald-400" : "text-emerald-500"}`}>
+                      {plan.recommended ? `✓ You save ${plan.saveAmount} (${plan.save} off)` : `Save ${plan.saveAmount} vs monthly`}
+                    </p>
+                  ) : (
+                    <div className="mb-5" />
+                  )}
+
+                  {/* Features */}
+                  <ul className="space-y-2.5 mb-6 flex-1">
+                    {features.map((f) => (
+                      <li key={f} className="flex items-center gap-2.5 text-sm text-foreground/75 group-hover:text-foreground/90 transition-colors">
+                        <span className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 ${
+                          plan.recommended ? "bg-primary/20 border border-primary/40" : "bg-muted border border-border"
+                        }`}>
+                          <Check size={9} className={plan.recommended ? "text-primary" : "text-muted-foreground"} />
+                        </span>
+                        {f}
+                      </li>
+                    ))}
+                    {plan.recommended && (
                       <li className="flex items-center gap-2.5 text-sm text-foreground font-semibold">
                         <span className="w-4 h-4 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center shrink-0">
                           <Check size={9} className="text-primary" />
                         </span>
                         Priority 24/7 Support
                       </li>
-                    </ul>
-
-                    {/* CTA */}
-                    <Button
-                      onClick={() => handleOrderClick(plan)}
-                      className="w-full bg-gradient-primary text-white font-bold hover:opacity-90 shadow-glow py-5 rounded-xl text-sm mb-2"
-                    >
-                      <CreditCard size={14} className="mr-1.5" /> Order Now
-                    </Button>
-                    <p className="text-[10px] text-center text-primary/70 font-semibold">⚡ Activate in ~30 min</p>
-                  </div>
-                </motion.div>
-              ) : (
-                /* ── Regular card ──────────────────────────────── */
-                <motion.div
-                  key={plan.duration}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.07 }}
-                  className="relative rounded-2xl border border-border bg-card px-5 pt-5 pb-5 flex flex-col h-full hover:border-primary/30 hover:shadow-glow transition-all duration-300 group"
-                >
-                  {/* Save badge */}
-                  {plan.save ? (
-                    <span className="absolute -top-3 right-4 bg-emerald-500 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full">
-                      SAVE {plan.save}
-                    </span>
-                  ) : plan.badge ? (
-                    <span className="absolute -top-3 right-4 bg-secondary border border-border text-muted-foreground text-[10px] font-semibold px-2.5 py-0.5 rounded-full">
-                      {plan.badge}
-                    </span>
-                  ) : null}
-
-                  {/* Plan name */}
-                  <h3 className="font-heading text-base font-bold text-foreground mb-3">{plan.duration}</h3>
-
-                  {/* Per-month hero price */}
-                  <div className="mb-1">
-                    <div className="flex items-baseline gap-1">
-                      <span className="font-heading text-4xl font-black text-foreground leading-none">{plan.perMonth}</span>
-                      <span className="text-muted-foreground text-xs">/mo</span>
-                    </div>
-                    {plan.duration !== "1 Month" ? (
-                      <p className="text-[11px] text-muted-foreground mt-1">{plan.price} billed total</p>
-                    ) : (
-                      <p className="text-[11px] text-muted-foreground mt-1">Billed monthly</p>
                     )}
-                  </div>
-
-                  {/* Save amount */}
-                  {plan.saveAmount && (
-                    <p className="text-[11px] text-emerald-400 font-semibold mb-4">Save {plan.saveAmount} vs monthly</p>
-                  )}
-                  {!plan.saveAmount && <div className="mb-4" />}
-
-                  {/* Features */}
-                  <ul className="space-y-2 mb-5 flex-1">
-                    {features.map((f) => (
-                      <li key={f} className="flex items-center gap-2.5 text-sm text-muted-foreground group-hover:text-foreground/70 transition-colors">
-                        <Check size={13} className="text-muted-foreground/50 shrink-0" />
-                        {f}
-                      </li>
-                    ))}
                   </ul>
 
                   {/* CTA */}
-                  <Button
-                    onClick={() => handleOrderClick(plan)}
-                    variant="outline"
-                    className="w-full font-semibold border-border hover:bg-primary/10 hover:border-primary/40 hover:text-primary transition-all rounded-xl py-5 text-sm"
-                  >
-                    Get Started →
-                  </Button>
-                </motion.div>
-              )
-            )}
+                  {plan.recommended ? (
+                    <>
+                      <Button onClick={() => handleOrderClick(plan)}
+                        className="w-full bg-gradient-primary text-white font-bold hover:opacity-90 shadow-glow py-5 rounded-xl text-sm mb-2">
+                        <CreditCard size={14} className="mr-1.5" /> Order Now
+                      </Button>
+                      <p className="text-[10px] text-center text-primary/70 font-semibold">⚡ Activate in ~30 min</p>
+                    </>
+                  ) : (
+                    <Button onClick={() => handleOrderClick(plan)} variant="outline"
+                      className="w-full font-semibold border-border hover:bg-primary/10 hover:border-primary/40 hover:text-primary transition-all rounded-xl py-5 text-sm">
+                      Get Started →
+                    </Button>
+                  )}
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </AnimatePresence>
 
