@@ -246,8 +246,8 @@ const PricingSection = () => {
                   {/* Features */}
                   <ul className="space-y-2 mb-5 flex-1">
                     {features.map((f) => (
-                      <li key={f} className="flex items-center gap-2.5 text-xs text-muted-foreground group-hover:text-foreground/70 transition-colors">
-                        <Check size={11} className="text-muted-foreground/50 shrink-0" />
+                      <li key={f} className="flex items-center gap-2.5 text-sm text-muted-foreground group-hover:text-foreground/70 transition-colors">
+                        <Check size={13} className="text-muted-foreground/50 shrink-0" />
                         {f}
                       </li>
                     ))}
