@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { MessageCircle, Send, Mail } from "lucide-react";
+import { Send } from "lucide-react";
 
 const WHATSAPP_NUMBER = "14702642482";
 const TELEGRAM_USERNAME = "InfinityTVSupport";
-const SUPPORT_EMAIL = "contact@infinitytv.io";
 
 // TODO: replace # with actual profile URLs
 const TIKTOK_URL = "#";
 const INSTAGRAM_URL = "#";
 const FACEBOOK_URL = "#";
+const PINTEREST_URL = "#";
 
 const navColumns = [
   {
@@ -44,12 +44,16 @@ const navColumns = [
 ];
 
 const socials = [
-  { label: "WhatsApp", icon: MessageCircle, href: `https://wa.me/${WHATSAPP_NUMBER}`, color: "#25D366" },
-  { label: "Telegram", icon: Send, href: `https://t.me/${TELEGRAM_USERNAME}`, color: "#2CA5E0" },
-  { label: "Email", icon: Mail, href: `mailto:${SUPPORT_EMAIL}`, color: "hsl(var(--primary))" },
-];
-
-const socialsSvg = [
+  {
+    label: "Telegram",
+    href: `https://t.me/${TELEGRAM_USERNAME}`,
+    color: "#2CA5E0",
+    svg: (
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+      </svg>
+    ),
+  },
   {
     label: "TikTok",
     href: TIKTOK_URL,
@@ -80,6 +84,16 @@ const socialsSvg = [
       </svg>
     ),
   },
+  {
+    label: "Pinterest",
+    href: PINTEREST_URL,
+    color: "#E60023",
+    svg: (
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z" />
+      </svg>
+    ),
+  },
 ];
 
 const Footer = () => (
@@ -101,13 +115,7 @@ const Footer = () => (
             Premium IPTV service with 22,000+ live channels and 95,000+ VODs. Anti-buffering technology for seamless streaming on all devices.
           </p>
           <div className="flex items-center gap-3 flex-wrap">
-            {socials.map(({ label, icon: Icon, href, color }) => (
-              <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-                className="w-9 h-9 rounded-lg bg-secondary border border-border flex items-center justify-center hover:scale-110 transition-transform">
-                <Icon size={16} style={{ color }} />
-              </a>
-            ))}
-            {socialsSvg.map(({ label, href, color, svg }) => (
+            {socials.map(({ label, href, color, svg }) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
                 className="w-9 h-9 rounded-lg bg-secondary border border-border flex items-center justify-center hover:scale-110 transition-transform"
                 style={{ color }}>
