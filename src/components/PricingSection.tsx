@@ -180,11 +180,9 @@ const PricingSection = () => {
                       </span>
                       <span className="text-muted-foreground text-sm">/mo</span>
                     </div>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {plan.oldPrice && <span className="line-through mr-1.5">{plan.oldPrice}</span>}
-                      <span className="text-foreground/70 font-medium">
-                        {plan.duration === "1 Month" ? "Billed monthly" : `${plan.price} total`}
-                      </span>
+                    <p className="text-sm text-foreground/80 font-semibold mt-1">
+                      {plan.oldPrice && <span className="line-through text-muted-foreground font-normal mr-1.5">{plan.oldPrice}</span>}
+                      {plan.duration === "1 Month" ? "Billed monthly" : `${plan.price} total`}
                     </p>
                   </div>
 
