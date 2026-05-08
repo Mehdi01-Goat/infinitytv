@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CheckCircle, Loader2, ChevronDown, MessageCircle, Check } from "lucide-react";
-import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 
 const WHATSAPP = "14702642482";
@@ -62,11 +61,13 @@ const CheckoutDialog = ({
     setIsSubmitting(true);
     const newOrderId = `INF-${String(Date.now()).slice(-6)}`;
     try {
-      await supabase.functions.invoke("send-order-notification", {
-        body: { fullName, email, whatsapp, paymentMethod, planName, planPrice, connections, promoCode, orderId: newOrderId },
+      await fetch("/api/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fullName, email, whatsapp, paymentMethod, planName, planPrice, connections, promoCode, orderId: newOrderId }),
       });
     } catch {
-      // silent — WhatsApp follow-up is the primary channel
+      // silent — Telegram notification handles delivery
     } finally {
       setOrderId(newOrderId);
       setIsSuccess(true);
