@@ -10,46 +10,44 @@ export default function RefundPolicy() {
       <Navbar />
       <main className="container pt-12 pb-16 max-w-3xl">
         <h1 className="text-3xl md:text-4xl font-bold mb-8 text-gradient">Refund Policy</h1>
-        <p className="text-muted-foreground mb-6 text-sm">Last updated: March 29, 2026</p>
+        <p className="text-muted-foreground mb-6 text-sm">Last updated: May 8, 2026</p>
         <div className="space-y-8 text-muted-foreground leading-relaxed">
           <section>
-            <h2 className="text-xl font-semibold text-foreground mb-3">1. Free Trial</h2>
-            <p>We offer a free trial period so you can test our service before committing to a subscription. We encourage all customers to take advantage of this trial to ensure the service meets their needs and is compatible with their devices.</p>
+            <h2 className="text-xl font-semibold text-foreground mb-3">1. Free Trial First</h2>
+            <p>We offer a free 24-hour trial so you can test the service on your devices before purchasing. We strongly encourage all new customers to use this trial — it is the best way to confirm compatibility and quality before any payment is made.</p>
           </section>
           <section>
             <h2 className="text-xl font-semibold text-foreground mb-3">2. Refund Eligibility</h2>
-            <p>Refund requests are evaluated on a case-by-case basis. You may be eligible for a refund if:</p>
+            <p>Refund requests are reviewed on a case-by-case basis. We may consider a refund if all of the following apply:</p>
             <ul className="list-disc pl-6 mt-2 space-y-1">
-              <li>You experience persistent technical issues that our support team is unable to resolve</li>
-              <li>The service is significantly different from what was described at the time of purchase</li>
-              <li>You request a refund within 7 days of your initial purchase</li>
+              <li>You contact us within 7 days of your initial purchase</li>
+              <li>You experience a persistent technical issue that our support team cannot resolve after reasonable attempts</li>
+              <li>The service is materially different from what was described at the time of purchase</li>
             </ul>
+            <p className="mt-3">A refund is not guaranteed — it is granted at our discretion after reviewing the circumstances of each case.</p>
           </section>
           <section>
             <h2 className="text-xl font-semibold text-foreground mb-3">3. Non-Refundable Cases</h2>
             <p>Refunds will not be issued in the following cases:</p>
             <ul className="list-disc pl-6 mt-2 space-y-1">
-              <li>The refund request is made after 7 days from the purchase date</li>
-              <li>Your account was suspended or terminated due to a violation of our Terms of Service</li>
-              <li>You simply changed your mind after purchasing a subscription</li>
-              <li>Issues caused by your internet connection, device compatibility, or third-party software</li>
+              <li>The request is made more than 7 days after the purchase date</li>
+              <li>Your account was suspended due to a violation of our Terms of Service</li>
+              <li>You changed your mind after the service was delivered and activated</li>
+              <li>Issues caused by your internet connection, device, or third-party apps</li>
+              <li>You did not use the free trial before purchasing</li>
             </ul>
           </section>
           <section>
-            <h2 className="text-xl font-semibold text-foreground mb-3">4. How to Request a Refund</h2>
-            <p>To request a refund, please contact our support team through our <a href="/#contact" className="text-primary hover:underline">contact page</a> with your account email, order ID, reason for the refund, and any relevant screenshots.</p>
+            <h2 className="text-xl font-semibold text-foreground mb-3">4. How Refunds Are Issued</h2>
+            <p>Because we accept multiple payment methods (Card, PayPal, E-Transfer, Crypto, MoneyGram, Western Union), refunds are handled manually and the method depends on what is practically available. We cannot guarantee a refund to the original payment method. If a refund is approved, we will coordinate with you directly to arrange the return.</p>
           </section>
           <section>
-            <h2 className="text-xl font-semibold text-foreground mb-3">5. Processing Time</h2>
-            <p>Approved refunds will be processed within 5–10 business days. The refund will be issued to the original payment method used for the purchase.</p>
+            <h2 className="text-xl font-semibold text-foreground mb-3">5. Chargebacks</h2>
+            <p>Please contact us before initiating a chargeback or dispute with your payment provider. Filing a chargeback without first contacting our support team may result in permanent account suspension and forfeiture of any refund consideration.</p>
           </section>
           <section>
-            <h2 className="text-xl font-semibold text-foreground mb-3">6. Chargebacks</h2>
-            <p>We encourage customers to contact us directly before initiating a chargeback. Filing a chargeback without first contacting our support team may result in permanent account suspension.</p>
-          </section>
-          <section>
-            <h2 className="text-xl font-semibold text-foreground mb-3">7. Contact Us</h2>
-            <p>For any questions regarding our refund policy, please reach out to us via our <a href="/#contact" className="text-primary hover:underline">contact page</a>.</p>
+            <h2 className="text-xl font-semibold text-foreground mb-3">6. Contact Us</h2>
+            <p>To request a refund or ask a question about this policy, please email us at <a href="mailto:contact@infinitytv.io" className="text-primary hover:underline">contact@infinitytv.io</a> with your order ID, WhatsApp number, and a description of the issue.</p>
           </section>
         </div>
       </main>
