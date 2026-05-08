@@ -139,18 +139,10 @@ const Footer = () => (
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="group w-8 h-8 rounded-full bg-secondary border border-border flex items-center justify-center transition-all duration-200 hover:border-transparent hover:scale-110"
-                  style={{ ["--hover-color" as string]: hoverColor }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor = hoverColor;
-                    (e.currentTarget as HTMLElement).style.color = "#fff";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor = "";
-                    (e.currentTarget as HTMLElement).style.color = "";
-                  }}
+                  className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 hover:brightness-110"
+                  style={{ backgroundColor: hoverColor, color: "#fff" }}
                 >
-                  <span className="text-muted-foreground group-hover:text-white transition-colors">{svg}</span>
+                  {svg}
                 </a>
               ))}
             </div>
