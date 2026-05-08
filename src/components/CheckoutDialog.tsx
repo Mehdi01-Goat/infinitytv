@@ -82,58 +82,42 @@ const CheckoutDialog = ({
     );
     return (
       <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="sm:max-w-md bg-card border-border">
+        <DialogContent className="sm:max-w-sm bg-card border-border">
           <DialogHeader className="sr-only">
             <DialogTitle>Order Confirmed</DialogTitle>
             <DialogDescription>Your order has been received.</DialogDescription>
           </DialogHeader>
-          <div className="flex flex-col items-center text-center py-6 gap-5">
-            <div className="w-14 h-14 rounded-full bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center">
-              <CheckCircle className="h-7 w-7 text-emerald-400" />
+          <div className="flex flex-col items-center text-center pt-8 pb-6 px-2 gap-4">
+
+            <div className="w-12 h-12 rounded-full bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center">
+              <CheckCircle className="h-6 w-6 text-emerald-400" />
             </div>
 
             <div>
-              <h3 className="text-xl font-heading font-bold mb-1">Order Confirmed</h3>
-              <p className="text-sm text-muted-foreground">We'll reach out on WhatsApp within a few minutes.</p>
+              <h3 className="text-lg font-heading font-bold">Order Received</h3>
+              <p className="text-sm text-muted-foreground mt-1">
+                Order <span className="text-foreground font-medium">#{orderId}</span> · {planPrice}
+              </p>
             </div>
 
-            {/* Order ID */}
-            <div className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm font-mono text-center">
-              <span className="text-muted-foreground">Order </span>
-              <span className="text-primary font-bold">#{orderId}</span>
-              <span className="text-muted-foreground"> · {planName} · {planPrice}</span>
-            </div>
-
-            {/* Next steps */}
-            <div className="w-full text-left space-y-3">
-              {[
-                { n: "1", text: "We message you on WhatsApp within 5 minutes" },
-                { n: "2", text: "You send payment via your chosen method" },
-                { n: "3", text: "Credentials sent — you're streaming right away" },
-              ].map(({ n, text }) => (
-                <div key={n} className="flex items-start gap-3">
-                  <span className="w-5 h-5 rounded-full bg-primary/15 border border-primary/30 text-primary text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">
-                    {n}
-                  </span>
-                  <span className="text-sm text-foreground/80">{text}</span>
-                </div>
-              ))}
-            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              We'll contact you on WhatsApp within <span className="text-foreground font-medium">5 minutes</span> to complete your payment and activate your service.
+            </p>
 
             <a
               href={`https://wa.me/${WHATSAPP}?text=${waMsg}`}
               target="_blank" rel="noopener noreferrer"
-              className="block w-full"
+              className="block w-full mt-1"
             >
-              <Button className="w-full bg-[#25D366] hover:bg-[#1fbe5c] text-white font-semibold gap-2 rounded-xl py-5">
-                <MessageCircle size={16} />
+              <Button className="w-full bg-[#25D366] hover:bg-[#1fbe5c] text-white font-semibold gap-2 rounded-xl py-5 text-sm">
+                <MessageCircle size={15} />
                 Message us on WhatsApp
               </Button>
             </a>
 
-            <Button variant="ghost" onClick={() => handleClose(false)} className="w-full text-muted-foreground">
+            <button onClick={() => handleClose(false)} className="text-xs text-muted-foreground hover:text-foreground transition-colors">
               Close
-            </Button>
+            </button>
           </div>
         </DialogContent>
       </Dialog>
