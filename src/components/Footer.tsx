@@ -29,16 +29,7 @@ const navColumns = [
         label: "Free Trial",
         href: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi! I'd like a free trial.")}`,
       },
-    ],
-  },
-  {
-    title: "Support",
-    links: [
       { label: "Contact Us", href: "/#contact" },
-      { label: "FAQ", href: "/#faq" },
-      { label: "Privacy Policy", href: "/privacy-policy" },
-      { label: "Terms of Service", href: "/terms-of-service" },
-      { label: "Refund Policy", href: "/refund-policy" },
     ],
   },
 ];
