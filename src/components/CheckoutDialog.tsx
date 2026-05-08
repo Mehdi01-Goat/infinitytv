@@ -7,10 +7,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CheckCircle, Loader2, ChevronDown, MessageCircle, Check } from "lucide-react";
+import { CheckCircle, Loader2, ChevronDown, MessageCircle, Check, Mail } from "lucide-react";
 import { toast } from "sonner";
 
 const WHATSAPP = "14702642482";
+const SUPPORT_EMAIL = "contact@infinitytv.io";
 
 const paymentMethods = [
   { value: "card",          label: "Card"        },
@@ -80,6 +81,10 @@ const CheckoutDialog = ({
     const waMsg = encodeURIComponent(
       `Hi! I placed order #${orderId} for the ${planName} plan (${connections}) at ${planPrice}. I'm ready to complete my payment.`
     );
+    const emailSubject = encodeURIComponent(`Order #${orderId} — Payment`);
+    const emailBody = encodeURIComponent(
+      `Hi,\n\nI placed order #${orderId} for the ${planName} plan (${connections}) at ${planPrice}.\nI'm ready to complete my payment.\n\nThank you.`
+    );
     return (
       <Dialog open={open} onOpenChange={handleClose}>
         <DialogContent className="sm:max-w-sm bg-card border-border">
@@ -87,37 +92,61 @@ const CheckoutDialog = ({
             <DialogTitle>Order Confirmed</DialogTitle>
             <DialogDescription>Your order has been received.</DialogDescription>
           </DialogHeader>
-          <div className="flex flex-col items-center text-center pt-8 pb-6 px-2 gap-4">
 
-            <div className="w-12 h-12 rounded-full bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center">
-              <CheckCircle className="h-6 w-6 text-emerald-400" />
+          <div className="flex flex-col pt-8 pb-6 px-1 gap-6">
+
+            {/* Icon + heading */}
+            <div className="flex flex-col items-center text-center gap-3">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                <CheckCircle className="h-7 w-7 text-emerald-400" />
+              </div>
+              <div>
+                <h3 className="text-lg font-heading font-bold tracking-tight">Order Confirmed</h3>
+                <p className="text-xs text-muted-foreground mt-1 font-mono">#{orderId}</p>
+              </div>
             </div>
 
-            <div>
-              <h3 className="text-lg font-heading font-bold">Order Received</h3>
-              <p className="text-sm text-muted-foreground mt-1">
-                Order <span className="text-foreground font-medium">#{orderId}</span> · {planPrice}
-              </p>
+            {/* Summary card */}
+            <div className="rounded-xl border border-border bg-secondary/40 px-4 py-3 space-y-1.5 text-sm">
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Plan</span>
+                <span className="font-medium text-foreground">{planName} · {connections}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Total</span>
+                <span className="font-bold text-foreground">{planPrice}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Status</span>
+                <span className="text-emerald-400 font-medium">Awaiting payment</span>
+              </div>
             </div>
 
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              We'll contact you on WhatsApp within <span className="text-foreground font-medium">5 minutes</span> to complete your payment and activate your service.
+            {/* Instructions */}
+            <p className="text-sm text-muted-foreground text-center leading-relaxed">
+              Reach out via WhatsApp or email to complete your payment. We activate your service within <span className="text-foreground font-medium">30 minutes</span> of confirmation.
             </p>
 
-            <a
-              href={`https://wa.me/${WHATSAPP}?text=${waMsg}`}
-              target="_blank" rel="noopener noreferrer"
-              className="block w-full mt-1"
-            >
-              <Button className="w-full bg-[#25D366] hover:bg-[#1fbe5c] text-white font-semibold gap-2 rounded-xl py-5 text-sm">
-                <MessageCircle size={15} />
-                Message us on WhatsApp
-              </Button>
-            </a>
+            {/* Contact buttons */}
+            <div className="flex flex-col gap-2.5">
+              <a href={`https://wa.me/${WHATSAPP}?text=${waMsg}`} target="_blank" rel="noopener noreferrer">
+                <Button className="w-full bg-[#25D366] hover:bg-[#1fbe5c] text-white font-semibold gap-2 rounded-xl py-5 text-sm">
+                  <MessageCircle size={15} />
+                  Continue on WhatsApp
+                </Button>
+              </a>
+              <a href={`mailto:${SUPPORT_EMAIL}?subject=${emailSubject}&body=${emailBody}`}>
+                <Button variant="outline" className="w-full gap-2 rounded-xl py-5 text-sm border-border hover:border-primary/40 hover:text-primary">
+                  <Mail size={15} />
+                  Continue by Email
+                </Button>
+              </a>
+            </div>
 
-            <button onClick={() => handleClose(false)} className="text-xs text-muted-foreground hover:text-foreground transition-colors">
-              Close
+            <button onClick={() => handleClose(false)} className="text-xs text-center text-muted-foreground hover:text-foreground transition-colors">
+              I'll reach out later
             </button>
+
           </div>
         </DialogContent>
       </Dialog>
