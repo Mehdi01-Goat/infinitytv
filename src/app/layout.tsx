@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: "InfinityTV — Premium IPTV Service | 22,000+ Channels",
   description: "Stream 22,000+ live channels and 95,000+ movies in 4K with zero buffering. Anti-freeze technology. Instant setup on any device. Starting from $4.91/month.",
   keywords: "IPTV, streaming, live TV, channels, sports, movies, 4K, premium IPTV",
+  verification: {
+    google: "5TpyzPvkGjA5ywQZg12VeY0CgEUVPSQ652ECzQtv6Gw",
+  },
   icons: {
     icon: [
       { url: "/favicon.png", type: "image/png" },
