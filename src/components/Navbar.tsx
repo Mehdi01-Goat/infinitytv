@@ -7,17 +7,17 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { label: "Home", href: "/" },
+  { label: "Home", href: "/infinitytv-iptv" },
   { label: "Channel List", href: "/channel-list" },
   { label: "Installation Tutorial", href: "/installation-tutorial" },
   { label: "IPTV Reseller", href: "/iptv-reseller" },
   { label: "Affiliation", href: "/affiliation" },
-  { label: "Pricing", href: "/#pricing" },
+  { label: "Pricing", href: "/infinitytv-iptv#pricing" },
 ];
 
 function NavLogo() {
   return (
-    <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="InfinityTV home">
+    <Link href="/infinitytv-iptv" className="flex items-center gap-2.5 shrink-0" aria-label="InfinityTV home">
       {/* Infinity symbol — solid bg-background container makes mix-blend-screen reliable */}
       <div className="relative h-9 w-9 sm:h-10 sm:w-10 shrink-0 overflow-hidden rounded-md bg-background">
         <img
@@ -50,8 +50,8 @@ const Navbar = () => {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
-    if (href.startsWith("/#")) return pathname === "/";
+    if (href === "/infinitytv-iptv") return pathname === "/infinitytv-iptv";
+    if (href.startsWith("/infinitytv-iptv#")) return pathname === "/infinitytv-iptv";
     return pathname.startsWith(href);
   };
 
@@ -74,7 +74,7 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <Link href="#pricing">
+          <Link href="/infinitytv-iptv#pricing">
             <Button size="sm" className="bg-gradient-primary text-primary-foreground font-semibold hover:opacity-90 shadow-glow">
               Subscribe Now
             </Button>
@@ -102,7 +102,7 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <Link href="#pricing" onClick={() => setOpen(false)}>
+          <Link href="/infinitytv-iptv#pricing" onClick={() => setOpen(false)}>
             <Button size="sm" className="w-full bg-gradient-primary text-primary-foreground font-semibold">
               Subscribe Now
             </Button>
