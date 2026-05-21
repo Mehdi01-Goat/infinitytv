@@ -151,10 +151,3 @@
 @utility animate-scroll-right {
   animation: scroll-right 25s linear infinite;
 }
-/* ── Google Translate toolbar hide ── */
-.goog-te-banner-frame,
-.goog-te-banner-frame.skiptranslate { display: none !important; }
-.skiptranslate > iframe { display: none !important; }
-body { top: 0 !important; }
-#goog-te-spinner-pos { display: none !important; }
-
