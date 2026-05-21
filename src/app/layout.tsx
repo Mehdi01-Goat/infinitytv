@@ -25,7 +25,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: "InfinityTV — Premium IPTV Service",
     description: "22,000+ live channels & 95,000+ movies in 4K. From $4.91/mo.",
-    images: [{ url: "/assets/logo-mark.png" }],
+    url: "https://www.infinitytv.io/infinitytv-iptv",
+    siteName: "InfinityTV",
+    images: [
+      {
+        url: "https://www.infinitytv.io/assets/logo-mark.png",
+        width: 1200,
+        height: 630,
+        alt: "InfinityTV — Premium IPTV Service",
+      },
+    ],
     type: "website",
   },
 };
@@ -33,6 +42,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://image.tmdb.org" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://image.tmdb.org" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+      </head>
       <body className={poppins.variable}>
         <Providers>{children}</Providers>
       </body>
