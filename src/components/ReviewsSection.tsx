@@ -1,7 +1,6 @@
 "use client";
-
-import { motion } from "framer-motion";
 import { Star, CheckCircle } from "lucide-react";
+import { useTranslation } from "@/context/LanguageContext";
 
 const reviews = [
   { name: "James R.", location: "United States", rating: 5, text: "Best IPTV service I've ever used. Zero buffering, even during live sports. The channel selection is incredible!", date: "2 days ago", plan: "12-Month Plan" },
@@ -23,25 +22,26 @@ const StarRating = ({ rating }: { rating: number }) => (
 const initials = (name: string) => name.split(" ").map((n) => n[0]).join("").toUpperCase();
 
 const ReviewsSection = () => {
+  const { t } = useTranslation();
   const avgRating = (reviews.reduce((a, r) => a + r.rating, 0) / reviews.length).toFixed(1);
   return (
-    <section className="py-20 border-t border-border">
+    <section className="py-10 md:py-20 border-t border-border">
       <div className="container">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
-          <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Customer Reviews</p>
-          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold mb-3">What Our <span className="text-gradient">Customers Say</span></h2>
-          <p className="text-muted-foreground max-w-xl mx-auto mb-6">Trusted by thousands of satisfied viewers worldwide.</p>
+        <div className="text-center mb-10">
+          <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">{t("reviews_eyebrow")}</p>
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold mb-3">
+            {t("reviews_title_1")} <span className="text-gradient">{t("reviews_title_gradient")}</span>
+          </h2>
+          <p className="text-muted-foreground max-w-xl mx-auto mb-6">{t("reviews_sub")}</p>
           <div className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 bg-secondary rounded-full px-4 sm:px-6 py-2.5 sm:py-3 border border-border">
             <div className="flex gap-0.5">{Array.from({ length: 5 }).map((_, i) => <Star key={i} size={14} className="fill-amber-400 text-amber-400" />)}</div>
             <span className="font-heading font-bold text-foreground text-base sm:text-lg">{avgRating} / 5</span>
             <span className="text-xs sm:text-sm text-muted-foreground">based on verified reviews</span>
           </div>
-        </motion.div>
-
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {reviews.map((review, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-              className="rounded-xl border border-border glass-card p-5 flex flex-col gap-3 hover:border-glow transition-all duration-300">
+            <div key={i} className="rounded-xl border border-border glass-card p-5 flex flex-col gap-3 hover:border-glow transition-all duration-300">
               <div className="flex items-center justify-between">
                 <StarRating rating={review.rating} />
                 <span className="text-xs text-muted-foreground">{review.date}</span>
@@ -49,25 +49,22 @@ const ReviewsSection = () => {
               <p className="text-sm text-muted-foreground leading-relaxed flex-1">"{review.text}"</p>
               <div className="flex items-center justify-between pt-1 border-t border-border">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center text-white text-xs font-bold shrink-0">
-                    {initials(review.name)}
-                  </div>
+                  <div className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center text-white text-xs font-bold shrink-0">{initials(review.name)}</div>
                   <div>
                     <p className="text-sm font-semibold text-foreground leading-none">{review.name}</p>
                     <p className="text-xs text-muted-foreground mt-0.5">{review.location}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-1 text-[10px] text-emerald-600 font-medium">
-                  <CheckCircle size={11} /><span>Verified</span>
+                  <CheckCircle size={11} /><span>{t("reviews_verified")}</span>
                 </div>
               </div>
               <div className="text-[10px] text-muted-foreground/70 bg-secondary rounded px-2 py-1 w-fit">{review.plan}</div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
 };
-
 export default ReviewsSection;
