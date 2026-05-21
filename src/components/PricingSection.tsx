@@ -37,22 +37,22 @@ type Plan = {
 
 const plansByConnection: Record<number, Plan[]> = {
   0: [
-    { duration: "1 Month",   price: "$11.98",  perMonth: "$11.98", badge: "Most Flexible" },
-    { duration: "3 Months",  price: "$19.98",  perMonth: "$6.66",  save: "44%", saveAmount: "$15.96" },
-    { duration: "6 Months",  price: "$34.98",  perMonth: "$5.83",  save: "51%", saveAmount: "$36.90" },
-    { duration: "12 Months", price: "$58.98",  perMonth: "$4.91",  save: "59%", saveAmount: "$84.78", recommended: true, oldPrice: "$143.76" },
+    { duration: "1 Month",   price: "€11.98",  perMonth: "€11.98", badge: "Most Flexible" },
+    { duration: "3 Months",  price: "€19.98",  perMonth: "€6.66",  save: "44%", saveAmount: "€15.96" },
+    { duration: "6 Months",  price: "€34.98",  perMonth: "€5.83",  save: "51%", saveAmount: "€36.90" },
+    { duration: "12 Months", price: "€58.98",  perMonth: "€4.91",  save: "59%", saveAmount: "€84.78", recommended: true, oldPrice: "€143.76" },
   ],
   1: [
-    { duration: "1 Month",   price: "$18.98",  perMonth: "$18.98", badge: "Most Flexible" },
-    { duration: "3 Months",  price: "$29.98",  perMonth: "$9.99",  save: "47%", saveAmount: "$26.96" },
-    { duration: "6 Months",  price: "$54.98",  perMonth: "$9.16",  save: "51%", saveAmount: "$58.90" },
-    { duration: "12 Months", price: "$99.98",  perMonth: "$8.33",  save: "56%", saveAmount: "$127.78", recommended: true, oldPrice: "$227.76" },
+    { duration: "1 Month",   price: "€18.98",  perMonth: "€18.98", badge: "Most Flexible" },
+    { duration: "3 Months",  price: "€29.98",  perMonth: "€9.99",  save: "47%", saveAmount: "€26.96" },
+    { duration: "6 Months",  price: "€54.98",  perMonth: "€9.16",  save: "51%", saveAmount: "€58.90" },
+    { duration: "12 Months", price: "€99.98",  perMonth: "€8.33",  save: "56%", saveAmount: "€127.78", recommended: true, oldPrice: "€227.76" },
   ],
   2: [
-    { duration: "1 Month",   price: "$24.98",  perMonth: "$24.98", badge: "Most Flexible" },
-    { duration: "3 Months",  price: "$49.98",  perMonth: "$16.66", save: "33%", saveAmount: "$24.96" },
-    { duration: "6 Months",  price: "$84.98",  perMonth: "$14.16", save: "43%", saveAmount: "$64.90" },
-    { duration: "12 Months", price: "$149.98", perMonth: "$12.49", save: "50%", saveAmount: "$149.78", recommended: true, oldPrice: "$299.76" },
+    { duration: "1 Month",   price: "€24.98",  perMonth: "€24.98", badge: "Most Flexible" },
+    { duration: "3 Months",  price: "€49.98",  perMonth: "€16.66", save: "33%", saveAmount: "€24.96" },
+    { duration: "6 Months",  price: "€84.98",  perMonth: "€14.16", save: "43%", saveAmount: "€64.90" },
+    { duration: "12 Months", price: "€149.98", perMonth: "€12.49", save: "50%", saveAmount: "€149.78", recommended: true, oldPrice: "€299.76" },
   ],
 };
 
@@ -299,3 +299,4 @@ const PricingSection = () => {
 };
 
 export default PricingSection;
+
