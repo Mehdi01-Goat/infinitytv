@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Check, CreditCard, Shield, Lock, Zap, Monitor, Tv } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CheckoutDialog from "@/components/CheckoutDialog";
+import { useTranslation } from "@/context/LanguageContext";
 
 const connectionTabs = [
   { label: "1 Screen", value: "1 Connection", icon: Monitor },
@@ -57,6 +58,7 @@ const plansByConnection: Record<number, Plan[]> = {
 
 const PricingSection = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const { t } = useTranslation();
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<{ duration: string; price: string; connections: string; oldPrice: string; perMonth: string }>({
     duration: "", price: "", connections: "", oldPrice: "", perMonth: "",
@@ -74,17 +76,17 @@ const PricingSection = () => {
   };
 
   return (
-    <section id="pricing" className="py-24 border-t border-border">
+    <section id="pricing" className="py-12 md:py-24 border-t border-border">
       <div className="container">
 
         {/* Header */}
         <div className="text-center mb-10">
-          <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Pricing</p>
+          <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">{t("pricing_eyebrow")}</p>
           <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">
-            Simple, Transparent <span className="text-gradient">Pricing</span>
+            {t("pricing_title")} <span className="text-gradient">{t("pricing_title_gradient")}</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            All plans include every feature. No hidden fees, no contracts. Cancel anytime.
+            {t("pricing_sub")}
           </p>
         </div>
 
@@ -207,14 +209,6 @@ const PricingSection = () => {
                         {f}
                       </li>
                     ))}
-                    {plan.recommended && (
-                      <li className="flex items-center gap-2.5 text-sm text-foreground font-semibold">
-                        <span className="w-4 h-4 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center shrink-0">
-                          <Check size={9} className="text-primary" />
-                        </span>
-                        Priority 24/7 Support
-                      </li>
-                    )}
                   </ul>
 
                   {/* CTA */}
@@ -222,14 +216,14 @@ const PricingSection = () => {
                     <>
                       <Button onClick={() => handleOrderClick(plan)}
                         className="w-full bg-gradient-primary text-white font-bold hover:opacity-90 shadow-glow py-5 rounded-xl text-sm mb-2">
-                        <CreditCard size={14} className="mr-1.5" /> Order Now
+                        <CreditCard size={14} className="mr-1.5" /> {t("pricing_cta_recommended")}
                       </Button>
                       <p className="text-[10px] text-center text-primary/70 font-semibold">⚡ Activate in ~30 min</p>
                     </>
                   ) : (
                     <Button onClick={() => handleOrderClick(plan)} variant="outline"
                       className="w-full font-semibold border-border hover:bg-primary/10 hover:border-primary/40 hover:text-primary transition-all rounded-xl py-5 text-sm">
-                      Get Started →
+                      {t("pricing_cta_default")}
                     </Button>
                   )}
                 </div>
@@ -238,23 +232,56 @@ const PricingSection = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Bottom trust bar */}
-        <div className="mt-10 flex flex-wrap justify-center gap-6 sm:gap-10 text-xs text-muted-foreground border-t border-border pt-8">
-          <div className="flex items-center gap-2">
-            <Shield size={13} className="text-emerald-400 shrink-0" />
-            <span>7-Day Money-Back</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CreditCard size={13} className="text-primary shrink-0" />
-            <span>Card · Crypto · PayPal · E-Transfer</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Zap size={13} className="text-primary shrink-0" />
-            <span>Activated in ~30 minutes</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Lock size={13} className="text-blue-400 shrink-0" />
-            <span>SSL Encrypted</span>
+        {/* Payment methods */}
+        <div className="mt-10 border-t border-border pt-8 flex flex-col items-center gap-4">
+          <p className="text-xs text-muted-foreground uppercase tracking-widest font-semibold">Accepted Payment Methods</p>
+          <div className="flex flex-wrap justify-center items-center gap-3">
+            {/* Visa */}
+            <div className="flex items-center justify-center h-9 px-4 rounded-lg bg-secondary border border-border">
+              <svg height="22" viewBox="0 0 60 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M25.5 1.5L21.5 18.5H17L21 1.5H25.5Z" fill="#1A1F71"/>
+                <path d="M40.5 2C39.5 1.6 37.9 1.2 36 1.2C31.5 1.2 28.3 3.5 28.3 6.8C28.3 9.3 30.6 10.7 32.3 11.5C34 12.3 34.6 12.9 34.6 13.6C34.6 14.7 33.2 15.3 31.9 15.3C30 15.3 29 15 27.4 14.3L26.7 14L26 18.1C27.2 18.6 29.4 19 31.7 19C36.5 19 39.6 16.8 39.6 13.2C39.6 11.2 38.4 9.7 35.6 8.4C34.1 7.7 33.2 7.1 33.2 6.3C33.2 5.6 34 4.9 35.6 4.9C37 4.9 38 5.2 38.8 5.5L39.2 5.7L40.5 2Z" fill="#1A1F71"/>
+                <path d="M47 1.5H43.5C42.5 1.5 41.7 1.8 41.3 2.8L35 18.5H39.8L40.8 15.8H46.5L47.1 18.5H51.4L47 1.5ZM42 12.3L44.3 6L45.5 12.3H42Z" fill="#1A1F71"/>
+                <path d="M15.5 1.5L11.1 13L10.6 10.5C9.7 7.7 7.1 4.7 4.2 3.2L8.2 18.5H13L20.4 1.5H15.5Z" fill="#1A1F71"/>
+                <path d="M7 1.5H0L0 1.8C5.4 3.1 9 6.4 10.6 10.5L8.9 2.8C8.6 1.8 7.9 1.5 7 1.5Z" fill="#F9A533"/>
+              </svg>
+            </div>
+            {/* Mastercard */}
+            <div className="flex items-center justify-center h-9 px-3 rounded-lg bg-secondary border border-border">
+              <svg height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="13" cy="12" r="10" fill="#EB001B"/>
+                <circle cx="25" cy="12" r="10" fill="#F79E1B"/>
+                <path d="M19 5.3A10 10 0 0 1 23.7 12 10 10 0 0 1 19 18.7 10 10 0 0 1 14.3 12 10 10 0 0 1 19 5.3Z" fill="#FF5F00"/>
+              </svg>
+            </div>
+            {/* PayPal */}
+            <div className="flex items-center justify-center h-9 px-4 rounded-lg bg-secondary border border-border gap-1">
+              <svg width="14" height="17" viewBox="0 0 14 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.5 16.5L5.6 2H11.5C13.5 2 14.7 3.1 14.3 5.5C13.8 8.5 11.8 10 9.3 10H7L6 14L5.3 16.5H3.5Z" fill="#003087"/>
+                <path d="M1 14.5L3.1 0H9C11 0 12.2 1.1 11.8 3.5C11.3 6.5 9.3 8 6.8 8H4.5L3.5 12L2.8 14.5H1Z" fill="#009CDE"/>
+              </svg>
+              <span className="text-xs font-bold text-[#003087]">PayPal</span>
+            </div>
+            {/* Crypto */}
+            <div className="flex items-center justify-center h-9 px-4 rounded-lg bg-secondary border border-border gap-1.5">
+              <svg height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="12" fill="#F7931A"/>
+                <path d="M16.5 10.3C16.7 9 15.7 8.3 14.3 7.8L14.8 5.8L13.6 5.5L13.1 7.4C12.8 7.3 12.5 7.3 12.1 7.2L12.6 5.3L11.4 5L10.9 7L10.2 6.8L9 6.5L8.7 7.8C8.7 7.8 9.6 8 9.6 8C10.1 8.1 10.2 8.5 10.1 8.7L9.4 11.6C9.4 11.6 9.4 11.7 9.3 11.7C9.3 11.7 8.4 11.5 8.4 11.5L7.8 12.9L9 13.2L9.7 13.4L9.2 15.4L10.4 15.7L10.9 13.7C11.2 13.8 11.6 13.8 11.9 13.9L11.4 15.8L12.6 16.1L13.1 14.1C15.1 14.5 16.6 14.3 17.2 12.5C17.7 11.1 17.2 10.3 16.2 9.8C16.9 9.6 17.4 9.1 16.5 10.3ZM15 12.3C14.6 13.7 12.3 13 11.5 12.8L12.2 10.2C13 10.4 15.4 10.9 15 12.3ZM15.4 10C15 11.3 13.2 10.7 12.5 10.5L13.1 8.2C13.8 8.4 15.8 8.7 15.4 10Z" fill="white"/>
+              </svg>
+              <span className="text-xs font-semibold text-muted-foreground">Crypto</span>
+            </div>
+            {/* E-Transfer */}
+            <div className="flex items-center justify-center h-9 px-4 rounded-lg bg-secondary border border-border">
+              <span className="text-xs font-semibold text-muted-foreground">🏦 E-Transfer</span>
+            </div>
+            {/* MoneyGram */}
+            <div className="flex items-center justify-center h-9 px-4 rounded-lg bg-secondary border border-border">
+              <span className="text-xs font-bold" style={{color: '#d0021b'}}>MoneyGram</span>
+            </div>
+            {/* Western Union */}
+            <div className="flex items-center justify-center h-9 px-4 rounded-lg bg-secondary border border-border">
+              <span className="text-xs font-bold" style={{color: '#FFAA00'}}>Western Union</span>
+            </div>
           </div>
         </div>
 
