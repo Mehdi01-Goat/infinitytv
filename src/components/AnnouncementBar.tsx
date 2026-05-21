@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
+import { useTranslation } from "@/context/LanguageContext";
 
 const DEADLINE_KEY = "itv_offer_deadline";
 const DURATION_MS = 72 * 60 * 60 * 1000;
@@ -30,6 +31,7 @@ function formatCountdown(ms: number): string {
 const AnnouncementBar = () => {
   const [visible, setVisible] = useState(true);
   const [remaining, setRemaining] = useState<number>(DURATION_MS);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const deadline = getDeadline();
@@ -41,16 +43,20 @@ const AnnouncementBar = () => {
 
   if (!visible) return null;
 
+  // Parse <b> tags from translation string
+  const announcementHtml = t("announcement")
+    .replace(/<b>/g, '<strong>')
+    .replace(/<\/b>/g, '</strong>');
+
   return (
     <div className="relative bg-gradient-primary text-white text-xs sm:text-sm py-2 sm:py-2.5 px-8 sm:px-12 text-center">
       <span className="font-medium">
-        🎉 Limited Time: Get <strong>50% OFF</strong> with our Annual Plan —{" "}
-        <strong>$4.91/month</strong>
+        <span dangerouslySetInnerHTML={{ __html: announcementHtml }} />
         <span className="mx-2 opacity-60">·</span>
         <span className="font-mono font-bold">Ends in {formatCountdown(remaining)}</span>
       </span>
       <a href="#pricing" className="ml-2 sm:ml-3 underline underline-offset-2 font-bold hover:opacity-80 transition-opacity whitespace-nowrap">
-        Claim Offer →
+        {t("announcement_cta")}
       </a>
       <button
         onClick={() => setVisible(false)}
