@@ -1,39 +1,35 @@
 "use client";
-
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Shield, Zap, RotateCcw } from "lucide-react";
+import { useTranslation } from "@/context/LanguageContext";
 
-const badges = [
-  { icon: Zap, label: "Instant Activation" },
-  { icon: Shield, label: "7-Day Money-Back" },
-  { icon: RotateCcw, label: "Cancel Anytime" },
-];
-
-const CtaBanner = () => (
-  <section className="py-16 sm:py-24 border-t border-border" style={{ background: "var(--gradient-hero)" }}>
-    <div className="container text-center">
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-        <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">Start Today</p>
+const CtaBanner = () => {
+  const { t } = useTranslation();
+  const badges = [
+    { icon: Zap, labelKey: "cta_badge_1" },
+    { icon: Shield, labelKey: "cta_badge_2" },
+    { icon: RotateCcw, labelKey: "cta_badge_3" },
+  ];
+  return (
+    <section className="py-10 sm:py-16 md:py-24 border-t border-border" style={{ background: "var(--gradient-hero)" }}>
+      <div className="container text-center">
+        <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">{t("cta_eyebrow")}</p>
         <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-bold mb-4">
-          Ready to Start <span className="text-gradient">Streaming</span>?
+          {t("cta_title_1")} <span className="text-gradient">{t("cta_title_gradient")}</span>?
         </h2>
-        <p className="text-muted-foreground mb-8 max-w-md mx-auto text-sm sm:text-base">Join 10,000+ satisfied subscribers. No contracts, no dish, no hassle.</p>
-        <a href="#pricing">
-          <Button size="lg" className="bg-gradient-primary text-primary-foreground font-bold text-base sm:text-lg px-6 sm:px-10 py-4 sm:py-6 hover:opacity-90 shadow-glow">
-            Unlock Full Entertainment
-          </Button>
+        <p className="text-muted-foreground mb-8 max-w-md mx-auto text-sm sm:text-base">{t("cta_sub")}</p>
+        <a href="/infinitytv-iptv#pricing">
+          <Button size="lg" className="bg-gradient-primary text-primary-foreground font-bold text-base sm:text-lg px-6 sm:px-10 py-4 sm:py-6 hover:opacity-90 shadow-glow">{t("cta_button")}</Button>
         </a>
         <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-6 sm:mt-8">
-          {badges.map(({ icon: Icon, label }) => (
-            <div key={label} className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
-              <Icon size={13} className="text-primary shrink-0" /><span>{label}</span>
+          {badges.map(({ icon: Icon, labelKey }) => (
+            <div key={labelKey} className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
+              <Icon size={13} className="text-primary shrink-0" /><span>{t(labelKey)}</span>
             </div>
           ))}
         </div>
-      </motion.div>
-    </div>
-  </section>
-);
-
+      </div>
+    </section>
+  );
+};
 export default CtaBanner;
