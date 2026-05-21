@@ -230,7 +230,7 @@ const CheckoutDialog = ({
             <Label htmlFor="whatsapp" className="text-sm">WhatsApp Number</Label>
             <Input id="whatsapp" type="tel" placeholder="+1 234 567 8900" value={whatsapp}
               onChange={(e) => setWhatsapp(e.target.value)} required />
-            <p className="text-[11px] text-muted-foreground">Your login credentials will be sent here.</p>
+            <p className="text-[11px] text-muted-foreground">Recommended for faster support. No WhatsApp? We&apos;ll deliver via email.</p>
           </div>
 
           {/* Payment method */}
