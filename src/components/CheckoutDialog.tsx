@@ -84,7 +84,7 @@ const CheckoutDialog = ({
     if (open && typeof window !== "undefined" && (window as any).fbq) {
       (window as any).fbq("track", "InitiateCheckout", {
         content_name: planName,
-        currency: "USD",
+        currency: "EUR",
         value: parseFloat(planPrice.replace(/[^0-9.]/g, "")),
       });
     }
@@ -121,7 +121,7 @@ const CheckoutDialog = ({
       if (typeof window !== "undefined" && (window as any).fbq) {
         (window as any).fbq("track", "Lead", {
           content_name: planName,
-          currency: "USD",
+          currency: "EUR",
           value: parseFloat(planPrice.replace(/[^0-9.]/g, "")),
         });
       }
