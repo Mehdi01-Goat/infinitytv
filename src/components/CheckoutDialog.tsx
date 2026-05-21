@@ -171,10 +171,12 @@ const CheckoutDialog = ({
               </div>
             </div>
 
-            <p className="text-sm text-muted-foreground text-center leading-relaxed">
-              Contact us via WhatsApp or email to finalize your payment. Your service is activated within{" "}
-              <span className="text-foreground font-medium">30 minutes</span> of confirmation.
-            </p>
+            <div className="rounded-xl border border-border bg-secondary/40 px-4 py-3 text-sm text-center leading-relaxed text-muted-foreground space-y-1">
+              <p>
+                <span className="text-foreground font-semibold">We&apos;ll reach out to you</span> with your subscription details and guide you through the full setup.
+              </p>
+              <p>Once you&apos;re ready, we&apos;ll process your payment via your preferred method — no rush.</p>
+            </div>
 
             <div className="flex flex-col gap-2.5">
               <a href={`https://wa.me/${WHATSAPP}?text=${waMsg}`} target="_blank" rel="noopener noreferrer">
@@ -189,10 +191,13 @@ const CheckoutDialog = ({
                   Continue by Email
                 </Button>
               </a>
+              <p className="text-[11px] text-center text-muted-foreground pt-1">
+                Can&apos;t wait? Reach us now and we&apos;ll activate your service within <span className="text-foreground font-medium">30 minutes</span>.
+              </p>
             </div>
 
             <button onClick={() => handleClose(false)} className="text-xs text-center text-muted-foreground hover:text-foreground transition-colors">
-              I&apos;ll reach out later
+              I&apos;ll wait for your message
             </button>
           </div>
         </DialogContent>
