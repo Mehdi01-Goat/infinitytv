@@ -1,21 +1,18 @@
 "use client";
-
 import { useState } from "react";
-import Link from "next/link";
 import { Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useTranslation } from "@/context/LanguageContext";
 
 const movies = [
-  { title: "Dune: Part Two", year: 2024, rating: 8.4, genre: "Sci-Fi", poster: "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg" },
-  { title: "Oppenheimer", year: 2023, rating: 8.3, genre: "Drama", poster: "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg" },
-  { title: "Deadpool & Wolverine", year: 2024, rating: 7.8, genre: "Action", poster: "https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg" },
-  { title: "Inside Out 2", year: 2024, rating: 7.7, genre: "Animation", poster: "https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg" },
-  { title: "Alien: Romulus", year: 2024, rating: 7.2, genre: "Horror", poster: "https://image.tmdb.org/t/p/w500/b33nnKl1GSFbao4l3fZDDqsMx0F.jpg" },
-  { title: "Godzilla x Kong", year: 2024, rating: 6.8, genre: "Action", poster: "https://image.tmdb.org/t/p/w500/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg" },
-  { title: "Kingdom of the Apes", year: 2024, rating: 7.1, genre: "Sci-Fi", poster: "https://image.tmdb.org/t/p/w500/gKkl37BQuKTanygYQG1pyYgLVgf.jpg" },
-  { title: "Furiosa", year: 2024, rating: 7.8, genre: "Action", poster: "https://image.tmdb.org/t/p/w500/iADOJ8Zymht2JPMoy3R7xceZprc.jpg" },
+  { title: "Dune: Part Two", year: 2024, rating: 8.4, genre: "Sci-Fi", poster: "https://image.tmdb.org/t/p/w300/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg" },
+  { title: "Oppenheimer", year: 2023, rating: 8.3, genre: "Drama", poster: "https://image.tmdb.org/t/p/w300/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg" },
+  { title: "Deadpool & Wolverine", year: 2024, rating: 7.8, genre: "Action", poster: "https://image.tmdb.org/t/p/w300/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg" },
+  { title: "Inside Out 2", year: 2024, rating: 7.7, genre: "Animation", poster: "https://image.tmdb.org/t/p/w300/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg" },
+  { title: "Alien: Romulus", year: 2024, rating: 7.2, genre: "Horror", poster: "https://image.tmdb.org/t/p/w300/b33nnKl1GSFbao4l3fZDDqsMx0F.jpg" },
+  { title: "Godzilla x Kong", year: 2024, rating: 6.8, genre: "Action", poster: "https://image.tmdb.org/t/p/w300/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg" },
+  { title: "Kingdom of the Apes", year: 2024, rating: 7.1, genre: "Sci-Fi", poster: "https://image.tmdb.org/t/p/w300/gKkl37BQuKTanygYQG1pyYgLVgf.jpg" },
+  { title: "Furiosa", year: 2024, rating: 7.8, genre: "Action", poster: "https://image.tmdb.org/t/p/w300/iADOJ8Zymht2JPMoy3R7xceZprc.jpg" },
 ];
-
 const BASE = "https://images.unsplash.com/photo-";
 const UQ = "?w=400&h=600&fit=crop&q=80";
 const sports = [
@@ -28,16 +25,13 @@ const sports = [
   { title: "Tour de France: Unchained", year: 2023, rating: 8.0, genre: "Cycling", poster: `${BASE}1461896836934-ffe607ba8211${UQ}` },
   { title: "Starting 5", year: 2024, rating: 7.9, genre: "NBA", poster: `${BASE}1574629810360-7efbbe195018${UQ}` },
 ];
-
-type Item = (typeof movies)[number];
-
+type Item = typeof movies[number];
 const PosterCard = ({ item }: { item: Item }) => {
   const [imgError, setImgError] = useState(false);
   return (
     <div className="relative w-[130px] sm:w-[155px] md:w-[190px] shrink-0 rounded-xl overflow-hidden group cursor-pointer shadow-card hover:shadow-glow transition-shadow duration-300">
       {!imgError ? (
-        <img src={item.poster} alt={item.title} loading="lazy" width={190} height={285}
-          onError={() => setImgError(true)}
+        <img src={item.poster} alt={item.title} loading="lazy" width={190} height={285} onError={() => setImgError(true)}
           className="w-full h-[195px] sm:h-[232px] md:h-[285px] object-cover transition-transform duration-500 group-hover:scale-105" />
       ) : (
         <div className="w-full h-[255px] md:h-[285px] flex items-end p-4" style={{ background: "var(--gradient-primary)" }}>
@@ -49,18 +43,13 @@ const PosterCard = ({ item }: { item: Item }) => {
         <span className="inline-block bg-primary/80 text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full mb-2">{item.genre}</span>
         <p className="text-white font-heading font-bold text-sm leading-tight mb-1.5 line-clamp-2">{item.title}</p>
         <div className="flex items-center gap-2 text-xs text-white/80">
-          <div className="flex items-center gap-1">
-            <Star size={10} className="fill-amber-400 text-amber-400" />
-            <span className="font-semibold text-amber-400">{item.rating}</span>
-          </div>
-          <span className="text-white/40">·</span>
-          <span>{item.year}</span>
+          <div className="flex items-center gap-1"><Star size={10} className="fill-amber-400 text-amber-400" /><span className="font-semibold text-amber-400">{item.rating}</span></div>
+          <span className="text-white/40">·</span><span>{item.year}</span>
         </div>
       </div>
     </div>
   );
 };
-
 const ScrollRow = ({ items, direction }: { items: Item[]; direction: "left" | "right" }) => {
   const doubled = [...items, ...items];
   return (
@@ -73,33 +62,22 @@ const ScrollRow = ({ items, direction }: { items: Item[]; direction: "left" | "r
     </div>
   );
 };
-
-const TrendingSection = () => (
-  <section className="py-20 border-t border-border overflow-hidden">
-    <div className="container mb-10">
-      <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">On Demand</p>
-      <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-bold">
-        Trending <span className="text-gradient">Movies & Sports</span>
-      </h2>
-      <p className="text-muted-foreground text-sm mt-3 max-w-md">Stream thousands of movies, series, and live sports events — all in 4K.</p>
-    </div>
-    <div className="flex flex-col gap-5">
-      <ScrollRow items={movies} direction="left" />
-      <ScrollRow items={sports} direction="right" />
-    </div>
-
-    {/* CTA row */}
-    <div className="container mt-10 text-center">
-      <p className="text-muted-foreground text-sm mb-4">
-        All this content — plus <strong className="text-foreground">22,000+ live channels</strong> — from $4.91/mo
-      </p>
-      <Link href="/#pricing">
-        <Button className="bg-gradient-primary text-white font-bold hover:opacity-90 shadow-glow px-8 rounded-full">
-          See Pricing →
-        </Button>
-      </Link>
-    </div>
-  </section>
-);
-
+const TrendingSection = () => {
+  const { t } = useTranslation();
+  return (
+    <section className="py-10 md:py-20 border-t border-border overflow-hidden">
+      <div className="container mb-10">
+        <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">{t("trending_eyebrow")}</p>
+        <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-bold">
+          {t("trending_title_1")} <span className="text-gradient">{t("trending_title_gradient")}</span>
+        </h2>
+        <p className="text-muted-foreground text-sm mt-3 max-w-md">{t("trending_sub")}</p>
+      </div>
+      <div className="flex flex-col gap-5">
+        <ScrollRow items={movies} direction="left" />
+        <ScrollRow items={sports} direction="right" />
+      </div>
+    </section>
+  );
+};
 export default TrendingSection;
