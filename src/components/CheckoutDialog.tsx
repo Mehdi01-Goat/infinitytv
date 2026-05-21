@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
 } from "@/components/ui/dialog";
@@ -19,13 +19,11 @@ const paymentMethods = [
     label: "Credit / Debit Card",
     icons: (
       <span className="flex items-center gap-1">
-        {/* Visa */}
         <svg width="28" height="18" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="38" height="24" rx="4" fill="#1A1F71"/>
           <path d="M16.5 16.5H14l1.6-9h2.5L16.5 16.5zM23.4 7.7c-.5-.2-1.3-.4-2.2-.4-2.5 0-4.2 1.3-4.2 3.1 0 1.4 1.2 2.1 2.2 2.6 1 .5 1.3.8 1.3 1.2 0 .6-.8 1-1.6 1-.7 0-1.5-.2-2.2-.5l-.3-.1-.3 2c.6.3 1.7.5 2.8.5 2.6 0 4.3-1.3 4.3-3.2 0-1.1-.6-1.9-2-2.5-.8-.4-1.4-.7-1.4-1.2 0-.4.4-.8 1.4-.8.8 0 1.4.2 1.9.4l.2.1.3-1.9zM27.6 7.5h-1.9c-.6 0-1 .2-1.3.7l-3.6 8.3h2.5l.5-1.4h3.1l.3 1.4H29l-1.4-9zm-3.1 5.8l.9-2.6.5 2.6h-1.4zM13.7 7.5l-2.4 6.1-.3-1.3c-.4-1.5-1.8-3.1-3.3-3.9l2.2 8.1h2.6l3.8-9h-2.6z" fill="white"/>
           <path d="M9.3 7.5H5.1l-.1.3c3.3.8 5.5 2.8 6.4 5.2l-.9-4.8c-.1-.5-.6-.7-1.2-.7z" fill="#F9A533"/>
         </svg>
-        {/* Mastercard */}
         <svg width="28" height="18" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="38" height="24" rx="4" fill="#252525"/>
           <circle cx="14" cy="12" r="7" fill="#EB001B"/>
@@ -81,6 +79,17 @@ const CheckoutDialog = ({
   const [isSuccess, setIsSuccess]         = useState(false);
   const [orderId, setOrderId]             = useState("");
 
+  // Fire InitiateCheckout when dialog opens
+  useEffect(() => {
+    if (open && typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("track", "InitiateCheckout", {
+        content_name: planName,
+        currency: "USD",
+        value: parseFloat(planPrice.replace(/[^0-9.]/g, "")),
+      });
+    }
+  }, [open]);
+
   const resetForm = () => {
     setFullName(""); setEmail(""); setWhatsapp(""); setPaymentMethod("");
     setPromoCode(""); setShowPromo(false); setIsSuccess(false); setOrderId("");
@@ -107,6 +116,15 @@ const CheckoutDialog = ({
       setOrderId(newOrderId);
       setIsSuccess(true);
       setIsSubmitting(false);
+
+      // Fire Lead conversion event
+      if (typeof window !== "undefined" && (window as any).fbq) {
+        (window as any).fbq("track", "Lead", {
+          content_name: planName,
+          currency: "USD",
+          value: parseFloat(planPrice.replace(/[^0-9.]/g, "")),
+        });
+      }
     }
   };
 
@@ -187,7 +205,6 @@ const CheckoutDialog = ({
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-md bg-card border-border max-h-[90vh] overflow-y-auto">
 
-        {/* Header */}
         <DialogHeader>
           <DialogTitle className="font-heading text-lg font-bold">Complete Your Order</DialogTitle>
           <DialogDescription className="text-muted-foreground text-sm">
@@ -198,7 +215,6 @@ const CheckoutDialog = ({
           </DialogDescription>
         </DialogHeader>
 
-        {/* Price line */}
         <div className="flex items-center justify-between py-3 border-y border-border">
           <span className="text-sm text-muted-foreground">Total due today</span>
           <div className="flex items-center gap-2">
@@ -211,7 +227,6 @@ const CheckoutDialog = ({
 
         <form onSubmit={handleSubmit} className="space-y-4 pt-1">
 
-          {/* Name + Email */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="space-y-1.5">
               <Label htmlFor="fullName" className="text-sm">Full Name</Label>
@@ -225,7 +240,6 @@ const CheckoutDialog = ({
             </div>
           </div>
 
-          {/* WhatsApp */}
           <div className="space-y-1.5">
             <Label htmlFor="whatsapp" className="text-sm">WhatsApp Number</Label>
             <Input id="whatsapp" type="tel" placeholder="+1 234 567 8900" value={whatsapp}
@@ -233,7 +247,6 @@ const CheckoutDialog = ({
             <p className="text-[11px] text-muted-foreground">Recommended for faster support. No WhatsApp? We&apos;ll deliver via email.</p>
           </div>
 
-          {/* Payment method */}
           <div className="space-y-2">
             <Label className="text-sm">Payment Method</Label>
             <div className="flex flex-col gap-2">
@@ -264,7 +277,6 @@ const CheckoutDialog = ({
             </div>
           </div>
 
-          {/* Promo code */}
           <div>
             <button
               type="button"
@@ -284,7 +296,6 @@ const CheckoutDialog = ({
             )}
           </div>
 
-          {/* Submit */}
           <div className="space-y-3 pt-1">
             <Button
               type="submit"
@@ -297,7 +308,6 @@ const CheckoutDialog = ({
               }
             </Button>
 
-            {/* Trust row */}
             <div className="flex items-center justify-center gap-4 pt-1">
               <span className="flex items-center gap-1 text-[11px] text-muted-foreground">
                 <Lock size={10} className="text-emerald-400" />
