@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   verification: {
     google: "5TpyzPvkGjA5ywQZg12VeY0CgEUVPSQ652ECzQtv6Gw",
   },
+  other: {
+    "msvalidate.01": "6E91777CF8AC180E83B2FCCE0BC832BA",
+  },
   icons: {
     icon: [{ url: "/favicon.png", type: "image/png" }],
     shortcut: "/favicon.png",
