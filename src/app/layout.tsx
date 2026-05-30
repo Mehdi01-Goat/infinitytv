@@ -13,7 +13,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "InfinityTV — Premium IPTV Service | 22,000+ Channels",
-  description: "Stream 22,000+ live channels and 95,000+ movies in 4K with zero buffering. Anti-freeze technology. Instant setup on any device. Starting from $4.91/month.",
+  description: "Stream 22,000+ live channels and 95,000+ movies in 4K with zero buffering. Anti-freeze technology. Instant setup on any device. Starting from €4.91/month.",
   keywords: "IPTV, streaming, live TV, channels, sports, movies, 4K, premium IPTV",
   verification: {
     google: "5TpyzPvkGjA5ywQZg12VeY0CgEUVPSQ652ECzQtv6Gw",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "InfinityTV — Premium IPTV Service",
-    description: "22,000+ live channels & 95,000+ movies in 4K. From $4.91/mo.",
+    description: "22,000+ live channels & 95,000+ movies in 4K. From €4.91/mo.",
     url: "https://www.infinitytv.io/infinitytv-iptv",
     siteName: "InfinityTV",
     images: [
@@ -40,6 +40,34 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.infinitytv.io/#organization",
+      "name": "InfinityTV",
+      "url": "https://www.infinitytv.io",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.infinitytv.io/assets/logo-mark.png",
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "availableLanguage": ["English", "French", "German", "Spanish", "Dutch"],
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.infinitytv.io/#website",
+      "name": "InfinityTV",
+      "url": "https://www.infinitytv.io",
+      "publisher": { "@id": "https://www.infinitytv.io/#organization" },
+    },
+  ],
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -48,6 +76,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://image.tmdb.org" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
       </head>
       <body className={poppins.variable}>
         <Providers>{children}</Providers>
