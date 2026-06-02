@@ -97,7 +97,7 @@ function PanelDashboard() {
 }
 
 // ─── Profit calculator ────────────────────────────────────────────────────────
-function ProfitCalculator() {
+function ProfitCalculator({ onContact }: { onContact: (plan: { name: string; price: number; credits: number }) => void }) {
   const [clients, setClients] = useState(50);
   const [sellPrice, setSellPrice] = useState(DEFAULT_SELL_PRICE);
   const revenue = clients * sellPrice;
@@ -158,7 +158,7 @@ function ProfitCalculator() {
       </div>
 
       <Button
-        onClick={() => setContactPlan({ name: "Starter", price: 199, credits: 120 })}
+        onClick={() => onContact({ name: "Starter", price: 199, credits: 120 })}
         className="w-full mt-6 bg-gradient-primary text-white font-bold py-6 shadow-glow hover:opacity-90 text-base"
       >
         Start Earning ${profit.toLocaleString()}/mo — Get Your Panel <ArrowRight className="ml-2 w-4 h-4" />
@@ -188,6 +188,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function IptvReseller() {
+  const [contactPlan, setContactPlan] = useState<{ name: string; price: number; credits: number } | null>(null);
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -498,7 +499,7 @@ export default function IptvReseller() {
               How Much Could <span className="text-gradient">Your Business Earn</span>?
             </h2>
           </div>
-          <ProfitCalculator />
+          <ProfitCalculator onContact={(p) => setContactPlan(p)} />
         </div>
       </section>
 
@@ -660,3 +661,4 @@ export default function IptvReseller() {
     </div>
   );
 }
+
