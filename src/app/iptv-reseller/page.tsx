@@ -158,7 +158,7 @@ function ProfitCalculator() {
       </div>
 
       <Button
-        onClick={() => window.open("https://wa.me/", "_blank")}
+        onClick={() => setContactPlan({ name: "Starter", price: 199, credits: 120 })}
         className="w-full mt-6 bg-gradient-primary text-white font-bold py-6 shadow-glow hover:opacity-90 text-base"
       >
         Start Earning ${profit.toLocaleString()}/mo — Get Your Panel <ArrowRight className="ml-2 w-4 h-4" />
@@ -230,11 +230,11 @@ export default function IptvReseller() {
               </div>
 
               <div className="flex flex-wrap gap-4">
-                <Button onClick={() => window.open("https://wa.me/", "_blank")}
+                <Button onClick={() => setContactPlan({ name: "Starter", price: 199, credits: 120 })}
                   className="bg-gradient-primary text-white font-bold px-7 py-6 text-base shadow-glow hover:opacity-90">
                   Get Your Panel Now <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
-                <Button variant="outline" onClick={() => window.open("https://wa.me/", "_blank")}
+                <Button variant="outline" onClick={() => setContactPlan({ name: "Starter", price: 199, credits: 120 })}
                   className="border-border px-7 py-6 text-base font-semibold hover:bg-secondary">
                   Ask a Question
                 </Button>
@@ -437,7 +437,7 @@ export default function IptvReseller() {
                   </ul>
 
                   <Button
-                    onClick={() => window.open("https://wa.me/", "_blank")}
+                    onClick={() => setContactPlan({ name: plan.name, price: plan.price, credits: plan.credits })}
                     className={`w-full font-bold py-5 ${
                       plan.popular
                         ? "bg-gradient-primary text-white hover:opacity-90 shadow-glow"
@@ -578,11 +578,11 @@ export default function IptvReseller() {
               Trusted by <strong className="text-foreground">500+ resellers</strong> worldwide.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button onClick={() => window.open("https://wa.me/", "_blank")}
+              <Button onClick={() => setContactPlan({ name: "Starter", price: 199, credits: 120 })}
                 className="bg-gradient-primary text-white font-bold px-8 sm:px-10 py-6 text-base shadow-glow hover:opacity-90 w-full sm:w-auto">
                 Get My Reseller Panel <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
-              <Button variant="outline" onClick={() => window.open("https://wa.me/", "_blank")}
+              <Button variant="outline" onClick={() => setContactPlan({ name: "Starter", price: 199, credits: 120 })}
                 className="border-border px-8 sm:px-10 py-6 text-base font-semibold hover:bg-secondary w-full sm:w-auto">
                 Ask a Question
               </Button>
@@ -601,6 +601,46 @@ export default function IptvReseller() {
           </motion.div>
         </div>
       </section>
+
+      {/* ── Contact Popup ─────────────────────────────────────────── */}
+      {contactPlan && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setContactPlan(null)} />
+          <div className="relative bg-card border border-border rounded-2xl shadow-2xl p-6 w-full max-w-sm">
+            <button onClick={() => setContactPlan(null)} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors text-lg leading-none">✕</button>
+            <div className="mb-5">
+              <h3 className="text-lg font-bold text-foreground">Get the {contactPlan.name} Plan</h3>
+              <p className="text-sm text-muted-foreground mt-1">Choose how to reach us — we respond within minutes.</p>
+            </div>
+            <div className="bg-primary/10 border border-primary/20 rounded-xl px-4 py-3 mb-5 text-sm text-primary font-medium">
+              📦 {contactPlan.name} · {contactPlan.credits} credits · ${contactPlan.price}
+            </div>
+            <div className="flex flex-col gap-3">
+              <a
+                href={`https://wa.me/14702642482?text=${encodeURIComponent(`Hi! I want to order the ${contactPlan.name} Reseller Plan (${contactPlan.credits} credits) on InfinityTV. Can you help me get started?`)}`}
+                target="_blank" rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2.5 w-full py-3 rounded-xl bg-[#25D366] hover:bg-[#1fbe5c] text-white font-semibold text-sm transition-colors"
+              >
+                💬 WhatsApp
+              </a>
+              <a
+                href={`https://t.me/infinitytvreseller?text=${encodeURIComponent(`Hi! I want the ${contactPlan.name} Reseller Plan (${contactPlan.credits} credits / $${contactPlan.price}) on InfinityTV.`)}`}
+                target="_blank" rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2.5 w-full py-3 rounded-xl bg-[#229ED9] hover:bg-[#1a8bbf] text-white font-semibold text-sm transition-colors"
+              >
+                ✈️ Telegram
+              </a>
+              <a
+                href={`mailto:contact@infinitytv.io?subject=${encodeURIComponent(`Reseller — ${contactPlan.name} Plan`)}&body=${encodeURIComponent(`Hi,\n\nI want the ${contactPlan.name} Plan (${contactPlan.credits} credits / $${contactPlan.price}).\n\nPlease send payment details.\n\nThank you.`)}`}
+                className="flex items-center justify-center gap-2.5 w-full py-3 rounded-xl bg-primary hover:opacity-90 text-white font-semibold text-sm transition-colors"
+              >
+                ✉️ Email
+              </a>
+            </div>
+            <p className="text-center text-[11px] text-muted-foreground mt-4">Average response time: under 10 minutes</p>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
