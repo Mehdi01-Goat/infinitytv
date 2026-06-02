@@ -13,7 +13,7 @@ import { toast } from "sonner";
 const DEVICES = [
   { value: "smart-tv",     label: "Smart TV", icon: "📺" },
   { value: "firestick",    label: "Firestick / Fire TV", icon: "🔥" },
-  { value: "android-box",  label: "Android Box", icon: "📦" },
+  { value: "android-box",  label: "Android Box", icon: "🖥️" },
   { value: "mag",          label: "MAG Box", icon: "📡" },
   { value: "android",      label: "Android Phone / Tablet", icon: "📱" },
   { value: "ios",          label: "iPhone / iPad", icon: "🍎" },
@@ -198,4 +198,5 @@ export default function TrialDialog({ open, onOpenChange }: TrialDialogProps) {
     </Dialog>
   );
 }
+
 
