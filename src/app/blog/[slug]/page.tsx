@@ -225,7 +225,7 @@ export function generateStaticParams() {
 
 function renderMarkdown(text: string) {
   const lines = text.trim().split("\n");
-  const elements: JSX.Element[] = [];
+  const elements: React.ReactElement[] = [];
   let key = 0;
 
   for (const line of lines) {
@@ -326,4 +326,5 @@ export default async function BlogPost({ params }: { params: Params }) {
     </div>
   );
 }
+
 
