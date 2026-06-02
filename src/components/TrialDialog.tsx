@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CheckCircle, Loader2, Check } from "lucide-react";
 import { toast } from "sonner";
-import { useTranslation } from "@/context/LanguageContext";
 
 const DEVICES = [
   { value: "smart-tv",     label: "Smart TV", icon: "📺" },
@@ -28,7 +27,6 @@ interface TrialDialogProps {
 }
 
 export default function TrialDialog({ open, onOpenChange }: TrialDialogProps) {
-  const { t } = useTranslation();
 
   const [fullName, setFullName]       = useState("");
   const [email, setEmail]             = useState("");
@@ -200,3 +198,4 @@ export default function TrialDialog({ open, onOpenChange }: TrialDialogProps) {
     </Dialog>
   );
 }
+
