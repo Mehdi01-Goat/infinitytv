@@ -1,3 +1,4 @@
+import React from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -224,7 +225,7 @@ export function generateStaticParams() {
 
 function renderMarkdown(text: string) {
   const lines = text.trim().split("\n");
-  const elements: React.ReactNode[] = [];
+  const elements: JSX.Element[] = [];
   let key = 0;
 
   for (const line of lines) {
@@ -325,3 +326,4 @@ export default async function BlogPost({ params }: { params: Params }) {
     </div>
   );
 }
+
