@@ -82,6 +82,7 @@ const HeroSection = () => {
   }, [words.length]);
 
   return (
+    <>
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <style>{`
         @keyframes heroScrollL {
@@ -223,8 +224,10 @@ const HeroSection = () => {
       </div>
     </section>
       <TrialDialog open={trialOpen} onOpenChange={setTrialOpen} />
+    </>
   );
 };
 
 export default HeroSection;
+
 
