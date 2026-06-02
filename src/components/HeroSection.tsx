@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, Play, Star, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/context/LanguageContext";
+import TrialDialog from "@/components/TrialDialog";
 
 const POSTERS = [
   "https://image.tmdb.org/t/p/w300/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
@@ -66,6 +67,7 @@ function PosterRow({ offset, dir, secs }: { offset: number; dir: "L" | "R"; secs
 
 const HeroSection = () => {
   const [wordIdx, setWordIdx] = useState(0);
+  const [trialOpen, setTrialOpen] = useState(false);
   const { t, tArr } = useTranslation();
   const words = tArr("hero_words");
 
@@ -198,22 +200,15 @@ const HeroSection = () => {
               {t("hero_cta_primary")}
             </Button>
           </a>
-          <a
-            href={`https://wa.me/14702642482?text=${encodeURIComponent(
-              "Hi! I'd like a free trial of InfinityTV."
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Button
+            size="lg"
+            variant="outline"
+            onClick={() => setTrialOpen(true)}
+            className="gap-2.5 rounded-full border-white/20 bg-white/[0.06] px-8 py-6 text-base text-white backdrop-blur-sm hover:bg-white/[0.12]"
           >
-            <Button
-              size="lg"
-              variant="outline"
-              className="gap-2.5 rounded-full border-white/20 bg-white/[0.06] px-8 py-6 text-base text-white backdrop-blur-sm hover:bg-white/[0.12]"
-            >
-              <Play size={14} className="fill-white text-white" />
-              {t("hero_cta_trial")}
-            </Button>
-          </a>
+            <Play size={14} className="fill-white text-white" />
+            {t("hero_cta_trial")}
+          </Button>
         </div>
 
         {/* Trust badges */}
@@ -227,7 +222,9 @@ const HeroSection = () => {
         </div>
       </div>
     </section>
+      <TrialDialog open={trialOpen} onOpenChange={setTrialOpen} />
   );
 };
 
 export default HeroSection;
+
