@@ -7,21 +7,21 @@ import Footer from "@/components/Footer";
 import { posts } from "@/app/blog/page";
 
 const postContent: Record<string, { body: string }> = {
-  "best-iptv-service-france-2025": {
+  "best-streaming-service-france-2025": {
     body: `
-## What Makes a Good IPTV Service in France?
+## What Makes a Good streaming Service in France?
 
-When choosing an IPTV service in France, the most important factors are channel availability (especially French channels like TF1, M6, Canal+, beIN Sports), streaming stability, and price.
+When choosing a streaming service in France, the most important factors are channel availability (especially French channels like TF1, M6, Canal+, beIN Sports), streaming stability, and price.
 
 ## Top Features to Look For
 
-**French Channel Coverage:** Any serious IPTV service for France must include TF1, France 2, France 3, M6, Canal+, and sports channels like beIN Sports and RMC Sport.
+**French Channel Coverage:** Any serious streaming service for France must include TF1, France 2, France 3, M6, Canal+, and sports channels like beIN Sports and RMC Sport.
 
 **Streaming Stability:** Look for services that use anti-buffering technology. During live sports especially, a stable connection makes all the difference.
 
-**Device Compatibility:** The best IPTV services work on Smart TVs, Firestick, smartphones, and computers — so you can watch anywhere.
+**Device Compatibility:** The best streaming services work on Smart TVs, Firestick, smartphones, and computers — so you can watch anywhere.
 
-**Price:** Quality IPTV in France typically ranges from €5 to €15 per month depending on the plan duration. Annual plans offer the best value.
+**Price:** Quality streaming in France typically ranges from €5 to €15 per month depending on the plan duration. Annual plans offer the best value.
 
 ## Why InfinityTV Works for French Viewers
 
@@ -36,10 +36,10 @@ A 24-hour free trial is available — just contact support via WhatsApp to reque
 3. Receive your credentials and setup guide within 30 minutes
 4. Install on your preferred device and start watching
 
-[Start your free trial →](/infinitytv-iptv)
+[Start your free trial →](/streaming)
     `,
   },
-  "watch-bundesliga-online-iptv": {
+  "watch-bundesliga-online": {
     body: `
 ## Watching Bundesliga Online in 2025
 
@@ -51,30 +51,30 @@ The Bundesliga is one of the most-watched football leagues in the world, but tra
 
 **Sky Sport:** Traditional option with most Bundesliga coverage in Germany.
 
-**IPTV Services:** The most cost-effective solution for watching Bundesliga and hundreds of other sports channels from a single subscription.
+**streaming Services:** The most cost-effective solution for watching Bundesliga and hundreds of other sports channels from a single subscription.
 
-## Why IPTV is the Best Value for Bundesliga Fans
+## Why streaming is the Best Value for Bundesliga Fans
 
-With an IPTV service like InfinityTV, you get access to Bundesliga matches along with 22,000+ other channels — sports from around the world, including NFL, NBA, UFC, and Premier League — all for a single monthly price starting from €4.91/month.
+With a streaming service like InfinityTV, you get access to Bundesliga matches along with 22,000+ other channels — sports from around the world, including NFL, NBA, UFC, and Premier League — all for a single monthly price starting from €4.91/month.
 
 This beats paying separately for multiple streaming services.
 
-## Setting Up IPTV for Bundesliga
+## Setting Up streaming for Bundesliga
 
 1. Subscribe to InfinityTV
-2. Install the IPTV app on your Smart TV, Firestick, or phone
+2. Install the streaming app on your Smart TV, Firestick, or phone
 3. Enter your credentials
 4. Find the Bundesliga channel in the sports section
 5. Watch live in HD or 4K
 
-[Get started from €4.91/month →](/infinitytv-iptv)
+[Get started from €4.91/month →](/streaming)
     `,
   },
-  "iptv-setup-firestick-smart-tv": {
+  "setup-firestick-smart-tv": {
     body: `
-## Setting Up IPTV on Firestick (Step-by-Step)
+## Setting Up streaming on Firestick (Step-by-Step)
 
-Amazon Firestick is one of the most popular devices for IPTV. Here's how to get set up in under 10 minutes.
+Amazon Firestick is one of the most popular devices for streaming. Here's how to get set up in under 10 minutes.
 
 ### Step 1: Enable Unknown Sources
 Go to Settings → My Fire TV → Developer Options → Apps from Unknown Sources → Turn On.
@@ -82,104 +82,104 @@ Go to Settings → My Fire TV → Developer Options → Apps from Unknown Source
 ### Step 2: Install Downloader App
 Search for "Downloader" in the Amazon App Store and install it.
 
-### Step 3: Download Your IPTV App
-Open Downloader and enter the URL for your preferred IPTV player (IPTV Smarters, TiviMate, or GSE IPTV are popular choices).
+### Step 3: Download Your streaming App
+Open Downloader and enter the URL for your preferred streaming player (streaming Smarters, TiviMate, or GSE streaming are popular choices).
 
 ### Step 4: Enter Your Credentials
-Open the IPTV app, choose "M3U URL" or "Xtream Codes" (depending on your provider), and enter the credentials InfinityTV sent you.
+Open the streaming app, choose "M3U URL" or "Xtream Codes" (depending on your provider), and enter the credentials InfinityTV sent you.
 
 ### Step 5: Start Watching
 Your channel list will load automatically. Browse by category or use the EPG guide.
 
 ---
 
-## Setting Up IPTV on Samsung Smart TV
+## Setting Up streaming on Samsung Smart TV
 
-### Option 1: Using Smart IPTV App
-1. Install "Smart IPTV" from the Samsung App Store
+### Option 1: Using Smart streaming App
+1. Install "Smart streaming" from the Samsung App Store
 2. Note your TV's MAC address shown in the app
-3. Register your MAC address on the Smart IPTV website
+3. Register your MAC address on the Smart streaming website
 4. Upload your M3U playlist URL
 
-### Option 2: Using SS IPTV
-1. Install "SS IPTV" from the Samsung App Store
+### Option 2: Using SS streaming
+1. Install "SS streaming" from the Samsung App Store
 2. Go to Settings → Playlist → Add your M3U URL
 3. Save and reload
 
 ---
 
-## Setting Up IPTV on LG Smart TV
+## Setting Up streaming on LG Smart TV
 
-1. Install "SS IPTV" or "Smart IPTV" from LG Content Store
+1. Install "SS streaming" or "Smart streaming" from LG Content Store
 2. Add your M3U URL in the app settings
 3. Channels load automatically
 
 ---
 
-## Getting Your IPTV Credentials
+## Getting Your streaming Credentials
 
-[Order InfinityTV here →](/infinitytv-iptv) and receive your M3U URL and Xtream Codes credentials within 30 minutes. Support is available via WhatsApp for help with any setup step.
+[Order InfinityTV here →](/streaming) and receive your M3U URL and Xtream Codes credentials within 30 minutes. Support is available via WhatsApp for help with any setup step.
     `,
   },
-  "iptv-vs-cable-tv-comparison": {
+  "streaming-vs-cable-comparison": {
     body: `
-## IPTV vs Cable TV: The Full Comparison
+## streaming vs Cable TV: The Full Comparison
 
-Millions of households are cutting the cord and switching to IPTV. Here's an honest comparison of both options.
+Millions of households are cutting the cord and switching to streaming. Here's an honest comparison of both options.
 
 ## Price
 
 **Cable TV:** Typically €30–€80/month depending on your package and provider.
 
-**IPTV:** Premium services like InfinityTV start from €4.91/month. Even the monthly plan at €11.98 is a fraction of cable costs.
+**streaming:** Premium services like InfinityTV start from €4.91/month. Even the monthly plan at €11.98 is a fraction of cable costs.
 
-**Winner: IPTV** — significantly cheaper for the same or more channels.
+**Winner: streaming** — significantly cheaper for the same or more channels.
 
 ## Channel Selection
 
 **Cable TV:** Limited to what your provider offers in your country. Typically 100–300 channels.
 
-**IPTV:** InfinityTV offers 22,000+ channels from around the world, including international sports, foreign language channels, PPV events, and more.
+**streaming:** InfinityTV offers 22,000+ channels from around the world, including international sports, foreign language channels, PPV events, and more.
 
-**Winner: IPTV** — massively more content.
+**Winner: streaming** — massively more content.
 
 ## Reliability
 
 **Cable TV:** Very stable, no internet dependency.
 
-**IPTV:** Depends on your internet connection. With a stable connection (25 Mbps+ recommended), modern anti-buffering IPTV services are very reliable.
+**streaming:** Depends on your internet connection. With a stable connection (25 Mbps+ recommended), modern anti-buffering streaming services are very reliable.
 
-**Winner: Tie** — cable has a slight edge on raw stability, but IPTV with a good connection is comparable.
+**Winner: Tie** — cable has a slight edge on raw stability, but streaming with a good connection is comparable.
 
 ## Device Flexibility
 
 **Cable TV:** Limited to TV sets with a cable box.
 
-**IPTV:** Watch on Smart TV, phone, tablet, computer, Firestick — anywhere, anytime.
+**streaming:** Watch on Smart TV, phone, tablet, computer, Firestick — anywhere, anytime.
 
-**Winner: IPTV** — watch on any screen.
+**Winner: streaming** — watch on any screen.
 
 ## Conclusion
 
-For most users in 2025, IPTV offers better value, more content, and more flexibility than cable TV. The only reason to keep cable is if your internet connection is unreliable.
+For most users in 2025, streaming offers better value, more content, and more flexibility than cable TV. The only reason to keep cable is if your internet connection is unreliable.
 
-[Try InfinityTV free for 24 hours →](/infinitytv-iptv)
+[Try InfinityTV free for 24 hours →](/streaming)
     `,
   },
-  "best-iptv-germany-2025": {
+  "best-streaming-service-germany-2025": {
     body: `
-## Best IPTV Service in Germany 2025
+## Best streaming Service in Germany 2025
 
-Germany has strong demand for IPTV, particularly for Bundesliga, Champions League, and German-language channels. Here's what to look for.
+Germany has strong demand for streaming, particularly for Bundesliga, Champions League, and German-language channels. Here's what to look for.
 
 ## Must-Have German Channels
 
-A quality IPTV service for Germany should include:
+A quality streaming service for Germany should include:
 - **Free-to-air:** ARD, ZDF, RTL, Sat.1, ProSieben, VOX, kabel eins
 - **Sports:** Sky Sport Bundesliga, DAZN, Sport1, Eurosport
 - **International:** Channels in English, French, Turkish, Arabic, and other languages popular in Germany
 
-## Key Factors for German IPTV Users
+## Key Factors for German streaming Users
 
 **Streaming Quality:** 4K and Full HD for Bundesliga matches is essential. Look for services with anti-buffering technology.
 
@@ -195,7 +195,7 @@ The service activates within 30 minutes and includes a 7-day money-back guarante
 
 **Free 24-hour trial:** Contact InfinityTV via WhatsApp before ordering to get a free trial on your device.
 
-[View InfinityTV plans →](/infinitytv-iptv)
+[View InfinityTV plans →](/streaming)
     `,
   },
 };
@@ -326,5 +326,4 @@ export default async function BlogPost({ params }: { params: Params }) {
     </div>
   );
 }
-
 
