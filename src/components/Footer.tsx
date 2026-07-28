@@ -27,19 +27,19 @@ const Footer = () => {
     {
       titleKey: "footer_col_service",
       links: [
-        { labelKey: "footer_link_home", href: "/infinitytv-iptv" },
+        { labelKey: "footer_link_home", href: "/streaming" },
         { labelKey: "footer_link_channels", href: "/channel-list" },
-        { labelKey: "footer_link_pricing", href: "/infinitytv-iptv#pricing" },
+        { labelKey: "footer_link_pricing", href: "/streaming#pricing" },
         { labelKey: "footer_link_install", href: "/installation-tutorial" },
       ],
     },
     {
       titleKey: "footer_col_business",
       links: [
-        { labelKey: "footer_link_reseller", href: "/iptv-reseller" },
+        { labelKey: "footer_link_reseller", href: "/reseller" },
         { labelKey: "footer_link_affiliate", href: "/affiliation" },
         { labelKey: "footer_link_trial", href: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi! I'd like a free trial.")}` },
-        { labelKey: "footer_link_contact", href: "/infinitytv-iptv#contact" },
+        { labelKey: "footer_link_contact", href: "/streaming#contact" },
       ],
     },
   ];
@@ -52,7 +52,7 @@ const Footer = () => {
             <p className="text-xl font-heading font-bold text-foreground">{t("footer_cta_title")}</p>
             <p className="text-sm text-muted-foreground mt-1">{t("footer_cta_sub")}</p>
           </div>
-          <a href="/infinitytv-iptv#pricing" className="shrink-0">
+          <a href="/streaming#pricing" className="shrink-0">
             <Button className="bg-gradient-primary text-white font-bold px-8 py-5 rounded-xl shadow-glow hover:opacity-90 text-sm">{t("footer_cta_button")}</Button>
           </a>
         </div>
@@ -61,7 +61,7 @@ const Footer = () => {
         <div className="container py-14">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16">
             <div className="md:col-span-5 flex flex-col gap-6">
-              <Link href="/infinitytv-iptv" aria-label="InfinityTV home" className="flex items-center gap-2.5 w-fit">
+              <Link href="/streaming" aria-label="InfinityTV home" className="flex items-center gap-2.5 w-fit">
                 <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-md bg-background">
                   <img src="/assets/logo-mark.png" alt="" className="h-full w-full object-cover mix-blend-screen" />
                 </div>
