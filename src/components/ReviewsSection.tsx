@@ -3,9 +3,9 @@ import { Star, CheckCircle } from "lucide-react";
 import { useTranslation } from "@/context/LanguageContext";
 
 const reviews = [
-  { name: "James R.", location: "United States", rating: 5, text: "Best IPTV service I've ever used. Zero buffering, even during live sports. The channel selection is incredible!", date: "2 days ago", plan: "12-Month Plan" },
+  { name: "James R.", location: "United States", rating: 5, text: "Best streaming service I've ever used. Zero buffering, even during live sports. The channel selection is incredible!", date: "2 days ago", plan: "12-Month Plan" },
   { name: "Maria S.", location: "Canada", rating: 5, text: "Setup was instant and support helped me within minutes. HD quality on every channel. Highly recommend InfinityTV!", date: "5 days ago", plan: "6-Month Plan" },
-  { name: "David K.", location: "United Kingdom", rating: 5, text: "I've tried many IPTV providers and InfinityTV is by far the most reliable. Works perfectly on my Firestick and Smart TV.", date: "1 week ago", plan: "12-Month Plan" },
+  { name: "David K.", location: "United Kingdom", rating: 5, text: "I've tried many streaming providers and InfinityTV is by far the most reliable. Works perfectly on my Firestick and Smart TV.", date: "1 week ago", plan: "12-Month Plan" },
   { name: "Sophie L.", location: "France", rating: 4, text: "Great variety of international channels. My family loves it — something for everyone. Customer service is top notch.", date: "1 week ago", plan: "3-Month Plan" },
   { name: "Michael T.", location: "Australia", rating: 5, text: "Switched from cable and never looked back. Saving money and getting way more channels in better quality. 10/10!", date: "2 weeks ago", plan: "12-Month Plan" },
   { name: "Angela W.", location: "South Africa", rating: 5, text: "The sports coverage is unmatched. Every NFL, NBA, and soccer game I want to watch is available. Fantastic service!", date: "2 weeks ago", plan: "6-Month Plan" },
