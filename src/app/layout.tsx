@@ -12,9 +12,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "InfinityTV — Premium IPTV Service | 22,000+ Channels",
+  title: "InfinityTV — Premium Streaming Service | 22,000+ Channels",
   description: "Stream 22,000+ live channels and 95,000+ movies in 4K with zero buffering. Anti-freeze technology. Instant setup on any device. Starting from €4.91/month.",
-  keywords: "IPTV, streaming, live TV, channels, sports, movies, 4K, premium IPTV",
+  keywords: "streaming, live TV, channels, sports, movies, 4K, premium streaming",
   verification: {
     google: "5TpyzPvkGjA5ywQZg12VeY0CgEUVPSQ652ECzQtv6Gw",
   },
@@ -27,16 +27,16 @@ export const metadata: Metadata = {
     apple: "/favicon.png",
   },
   openGraph: {
-    title: "InfinityTV — Premium IPTV Service",
+    title: "InfinityTV — Premium Streaming Service",
     description: "22,000+ live channels & 95,000+ movies in 4K. From €4.91/mo.",
-    url: "https://www.infinitytv.io/infinitytv-iptv",
+    url: "https://www.infinitytv.io/streaming",
     siteName: "InfinityTV",
     images: [
       {
         url: "https://www.infinitytv.io/assets/logo-mark.png",
         width: 1200,
         height: 630,
-        alt: "InfinityTV — Premium IPTV Service",
+        alt: "InfinityTV — Premium Streaming Service",
       },
     ],
     type: "website",
