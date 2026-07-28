@@ -452,7 +452,7 @@ export default function Affiliation() {
               name="James R."
               handle="Tech YouTuber · 42K subscribers"
               avatar="J"
-              text="I added the link in my IPTV setup video description 4 months ago. It now generates passive income every single day — I don't have to do anything extra."
+              text="I added the link in my streaming setup video description 4 months ago. It now generates passive income every single day — I don't have to do anything extra."
               earnings="$847 / mo"
               delay={0}
             />
@@ -466,7 +466,7 @@ export default function Affiliation() {
             />
             <TestimonialCard
               name="Omar B."
-              handle="IPTV Reseller & Consultant"
+              handle="Streaming Consultant"
               avatar="O"
               text="I was already recommending InfinityTV to my clients for free. Now I get 35% on every one of them. It took 10 minutes to set up and has changed my income significantly."
               earnings="$1,238 / mo"
@@ -485,7 +485,7 @@ export default function Affiliation() {
               InfinityTV vs <span className="text-gradient">Industry Average</span>
             </h2>
             <p className="text-muted-foreground mt-3 text-sm max-w-md mx-auto">
-              Most IPTV affiliate programs pay 10–20% with monthly payouts and expiring cookies. We do things differently.
+              Most streaming affiliate programs pay 10–20% with monthly payouts and expiring cookies. We do things differently.
             </p>
           </div>
 
@@ -604,7 +604,7 @@ export default function Affiliation() {
               },
               {
                 q: "What kind of content works best for promoting InfinityTV?",
-                a: "IPTV setup tutorials, streaming app reviews, cord-cutting guides, and 'best IPTV service' comparison posts all perform very well. We can provide marketing materials, screenshots, and talking points to help you convert.",
+                a: "streaming setup tutorials, streaming app reviews, cord-cutting guides, and 'best streaming service' comparison posts all perform very well. We can provide marketing materials, screenshots, and talking points to help you convert.",
               },
             ].map((faq, i) => (
               <FaqItem key={i} q={faq.q} a={faq.a} i={i} />
