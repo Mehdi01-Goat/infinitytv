@@ -87,14 +87,14 @@ const devices: DeviceData[] = [
     apps: [
       {
         id: "smarters",
-        name: "IPTV Smarters Pro",
+        name: "Smarters Pro",
         note: "Free · Most popular",
         steps: [
           { title: "Enable Developer Options", detail: "Go to Settings → My Fire TV → Developer Options → Apps from Unknown Sources → turn it ON. This lets you install apps outside the Amazon Store." },
           { title: "Install the Downloader app", detail: "From the Fire TV home screen, search for 'Downloader'. Install the free app by AFTVnews — it lets you download any APK file." },
-          { title: "Download IPTV Smarters Pro", detail: "Open Downloader → tap the URL bar → type the download link for IPTV Smarters Pro APK (visit smarters.pro on your phone for the latest link)." },
+          { title: "Download Smarters Pro", detail: "Open Downloader → tap the URL bar → type the download link for Smarters Pro APK (visit smarters.pro on your phone for the latest link)." },
           { title: "Install the APK", detail: "Once downloaded, tap Install. If prompted about allowing Downloader to install unknown apps, tap Settings, enable it, then return to install." },
-          { title: "Log in with Xtream Codes", detail: "Open IPTV Smarters Pro → tap 'Login with Xtream Codes API' → enter any name, then your Server URL, Username, and Password from your purchase email." },
+          { title: "Log in with Xtream Codes", detail: "Open Smarters Pro → tap 'Login with Xtream Codes API' → enter any name, then your Server URL, Username, and Password from your purchase email." },
           { title: "Start watching", detail: "Tap Add User — channels, movies, series, and sports load automatically. Use your Fire TV remote to navigate between sections." },
         ],
       },
@@ -123,12 +123,12 @@ const devices: DeviceData[] = [
     apps: [
       {
         id: "smarters",
-        name: "IPTV Smarters Pro",
+        name: "Smarters Pro",
         note: "Free · Simple setup",
         steps: [
           { title: "Open Google Play Store", detail: "Tap the Play Store app on your Android phone or tablet." },
-          { title: "Install IPTV Smarters Pro", detail: "Search 'IPTV Smarters Pro' and install the free app. It has millions of downloads and works great." },
-          { title: "Open the app", detail: "Launch IPTV Smarters Pro from your app drawer once installation is done." },
+          { title: "Install Smarters Pro", detail: "Search 'Smarters Pro' and install the free app. It has millions of downloads and works great." },
+          { title: "Open the app", detail: "Launch Smarters Pro from your app drawer once installation is done." },
           { title: "Select Xtream Codes API", detail: "On the welcome screen, tap 'Login with Xtream Codes API' as the connection method." },
           { title: "Enter your credentials", detail: "Paste your Server URL, Username, and Password from your activation email. Tap Add User." },
           { title: "Stream anywhere", detail: "All channels load in seconds. Use your phone on the go, or cast to your TV via Chromecast for the big screen." },
@@ -140,7 +140,7 @@ const devices: DeviceData[] = [
         note: "Free · Best interface",
         steps: [
           { title: "Open Google Play Store", detail: "Tap the Play Store app on your Android phone or tablet." },
-          { title: "Install TiviMate", detail: "Search 'TiviMate IPTV Player' and install the free app." },
+          { title: "Install TiviMate", detail: "Search 'TiviMate' and install the free app." },
           { title: "Open TiviMate", detail: "Launch TiviMate from your app drawer." },
           { title: "Tap Add Playlist", detail: "On the home screen, tap 'Add Playlist' to get started." },
           { title: "Select Xtream Codes API", detail: "Choose 'Xtream Codes API' and enter your Server URL, Username, and Password from your purchase email." },
@@ -163,7 +163,7 @@ const devices: DeviceData[] = [
         note: "Free · Best for TV",
         steps: [
           { title: "Open Google Play Store", detail: "Navigate to the Play Store on your Android TV or Google TV home screen." },
-          { title: "Search for TiviMate", detail: "Search 'TiviMate IPTV Player' and install the free app." },
+          { title: "Search for TiviMate", detail: "Search 'TiviMate' and install the free app." },
           { title: "Open TiviMate", detail: "Launch TiviMate from your home screen after installation." },
           { title: "Add Playlist", detail: "On the welcome screen, tap 'Add Playlist'." },
           { title: "Enter Xtream Codes", detail: "Select 'Xtream Codes API' → enter your Server URL, Username, and Password from your purchase email." },
@@ -172,11 +172,11 @@ const devices: DeviceData[] = [
       },
       {
         id: "smarters",
-        name: "IPTV Smarters Pro",
+        name: "Smarters Pro",
         note: "Free · Works on any TV",
         steps: [
           { title: "Open Google Play Store", detail: "Navigate to the Play Store on your Android TV or Google TV home screen." },
-          { title: "Search for IPTV Smarters Pro", detail: "Search 'IPTV Smarters Pro' and install the free app." },
+          { title: "Search for Smarters Pro", detail: "Search 'Smarters Pro' and install the free app." },
           { title: "Open the app", detail: "Launch it from your home screen once installed." },
           { title: "Login with Xtream Codes API", detail: "On the welcome screen, select 'Login with Xtream Codes API'." },
           { title: "Enter your credentials", detail: "Fill in your Server URL, Username, and Password — all three are in the email sent after your purchase." },
@@ -199,11 +199,11 @@ const devices: DeviceData[] = [
         note: "Free · Easy",
         steps: [
           { title: "Enable Screen Mirroring on Roku", detail: "On your Roku: go to Settings → System → Screen Mirroring → set to Always Allow." },
-          { title: "Install IPTV app on Android phone", detail: "Download IPTV Smarters Pro or TiviMate from the Play Store. Log in with your InfinityTV credentials." },
+          { title: "Install player app on Android phone", detail: "Download Smarters Pro or TiviMate from the Play Store. Log in with your InfinityTV credentials." },
           { title: "Start mirroring", detail: "On your Android phone: Settings → Connected Devices → Cast → select your Roku from the list." },
-          { title: "Open IPTV app", detail: "Once mirroring starts, open IPTV Smarters on your phone. The stream appears full-screen on your Roku TV." },
+          { title: "Open player app", detail: "Once mirroring starts, open Smarters on your phone. The stream appears full-screen on your Roku TV." },
           { title: "Use your phone as remote", detail: "Control playback from your phone. The screen mirrors everything you see — tap a channel to start watching." },
-          { title: "Best Roku tip", detail: "For a better experience, consider a Firestick or Chromecast with Google TV plugged into your TV's HDMI — they support native IPTV apps." },
+          { title: "Best Roku tip", detail: "For a better experience, consider a Firestick or Chromecast with Google TV plugged into your TV's HDMI — they support native streaming apps." },
         ],
       },
       {
@@ -213,10 +213,10 @@ const devices: DeviceData[] = [
         steps: [
           { title: "Enable Screen Mirroring on Roku", detail: "On your Roku: go to Settings → System → Screen Mirroring → set to Always Allow." },
           { title: "Open Chrome on your PC or Mac", detail: "Open Google Chrome on your computer (download it from google.com/chrome if needed)." },
-          { title: "Open your IPTV stream", detail: "Navigate to your InfinityTV web player URL in Chrome." },
+          { title: "Open your streaming content", detail: "Navigate to your InfinityTV web player URL in Chrome." },
           { title: "Cast to Roku", detail: "Click the 3-dot menu (⋮) in Chrome → Cast → select your Roku device from the list." },
           { title: "Start watching", detail: "The stream appears on your Roku TV. Control it from your computer." },
-          { title: "Best Roku tip", detail: "For the best experience, use a Firestick or Chromecast with Google TV — they support native IPTV apps without casting." },
+          { title: "Best Roku tip", detail: "For the best experience, use a Firestick or Chromecast with Google TV — they support native streaming apps without casting." },
         ],
       },
     ],
@@ -231,12 +231,12 @@ const devices: DeviceData[] = [
     apps: [
       {
         id: "smarters",
-        name: "IPTV Smarters Pro",
+        name: "Smarters Pro",
         note: "~$4.99 · Best option",
         steps: [
           { title: "Open the App Store", detail: "Tap the App Store icon on your iPhone or iPad home screen." },
-          { title: "Install IPTV Smarters Pro", detail: "Search 'IPTV Smarters Pro' — it's ~$4.99. Tap Get to install." },
-          { title: "Open the app", detail: "Launch IPTV Smarters Pro once installation finishes." },
+          { title: "Install Smarters Pro", detail: "Search 'Smarters Pro' — it's ~$4.99. Tap Get to install." },
+          { title: "Open the app", detail: "Launch Smarters Pro once installation finishes." },
           { title: "Login with Xtream Codes API", detail: "Tap 'Login with Xtream Codes API' on the welcome screen." },
           { title: "Enter your credentials", detail: "Copy-paste your Server URL, Username, and Password from your purchase email. Copy-pasting avoids typos." },
           { title: "Watch anywhere", detail: "Your full channel list loads instantly. Use AirPlay to cast to your Apple TV for the big screen experience." },
@@ -267,12 +267,12 @@ const devices: DeviceData[] = [
     apps: [
       {
         id: "smarters",
-        name: "IPTV Smarters Pro",
+        name: "Smarters Pro",
         note: "~$4.99 · Best option",
         steps: [
           { title: "Open the App Store", detail: "From the Apple TV home screen, open the App Store using your Siri Remote." },
-          { title: "Install IPTV Smarters Pro", detail: "Search 'IPTV Smarters Pro'. It's ~$4.99. Confirm your purchase with Touch ID on your iPhone if prompted." },
-          { title: "Open the app", detail: "Launch IPTV Smarters Pro from your Apple TV home screen." },
+          { title: "Install Smarters Pro", detail: "Search 'Smarters Pro'. It's ~$4.99. Confirm your purchase with Touch ID on your iPhone if prompted." },
+          { title: "Open the app", detail: "Launch Smarters Pro from your Apple TV home screen." },
           { title: "Add your playlist", detail: "Tap 'Add User / Playlist' → select 'Xtream Codes API'." },
           { title: "Enter credentials", detail: "Type your Server URL, Username, and Password. Tip: use the Apple TV Remote app on your iPhone for faster text entry." },
           { title: "Done", detail: "Tap Save — all channels, series, and movies populate automatically. The Siri Remote swipe pad lets you navigate quickly." },
@@ -339,11 +339,11 @@ const devices: DeviceData[] = [
     apps: [
       {
         id: "smarters",
-        name: "IPTV Smarters Pro",
+        name: "Smarters Pro",
         note: "Free · Full EPG guide",
         steps: [
-          { title: "Download IPTV Smarters Pro", detail: "Windows: search 'IPTV Smarters Pro' in the Microsoft Store (free). Mac: visit the official Smarters site for the desktop version." },
-          { title: "Open the app", detail: "Launch IPTV Smarters Pro once installed." },
+          { title: "Download Smarters Pro", detail: "Windows: search 'Smarters Pro' in the Microsoft Store (free). Mac: visit the official Smarters site for the desktop version." },
+          { title: "Open the app", detail: "Launch Smarters Pro once installed." },
           { title: "Login with Xtream Codes API", detail: "Click 'Login with Xtream Codes API' on the welcome screen." },
           { title: "Enter your credentials", detail: "Fill in your Server URL, Username, and Password from your purchase email. Click Add User." },
           { title: "Browse your content", detail: "Your full channel list, movies, and series are all available. The EPG guide shows you what's on now and next." },
@@ -360,7 +360,7 @@ const devices: DeviceData[] = [
           { title: "Open Network Stream", detail: "Go to Media → Open Network Stream (Ctrl+N on Windows, Cmd+N on Mac)." },
           { title: "Paste your M3U URL", detail: "Paste your InfinityTV M3U URL (from your activation email) into the URL field and click Play." },
           { title: "Browse channels", detail: "Channels appear in the playlist panel on the right. Double-click any channel to start watching." },
-          { title: "Note", detail: "VLC doesn't display an EPG guide. For a full TV guide, use IPTV Smarters Pro instead — it shows what's on now and next for every channel." },
+          { title: "Note", detail: "VLC doesn't display an EPG guide. For a full TV guide, use Smarters Pro instead — it shows what's on now and next for every channel." },
         ],
       },
     ],
