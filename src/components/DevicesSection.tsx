@@ -10,7 +10,7 @@ const devices = [
   { Icon: Smartphone, name: "Android Phone", sub: "All Android smartphones & tablets", tags: ["Google Play", "APK Sideload"], from: "#059669", to: "#047857" },
   { Icon: Laptop, name: "PC & Mac", sub: "Windows, macOS, Linux — any browser", tags: ["Browser", "Windows App", "macOS"], from: "#4F46E5", to: "#3730A3" },
   { Icon: Zap, name: "Amazon Fire TV", sub: "Fire TV Stick 4K, Fire TV Cube", tags: ["Fire TV", "Fire Stick", "Alexa"], from: "#D97706", to: "#B45309" },
-  { Icon: Cpu, name: "Android Box", sub: "MAG, Formuler, Nvidia Shield, IPTV Box", tags: ["MAG Box", "Formuler", "Shield"], from: "#0D9488", to: "#0F766E" },
+  { Icon: Cpu, name: "Android Box", sub: "MAG, Formuler, Nvidia Shield, Android Box", tags: ["MAG Box", "Formuler", "Shield"], from: "#0D9488", to: "#0F766E" },
   { Icon: Play, name: "Kodi", sub: "Kodi add-on on any compatible device", tags: ["XBMC", "Kodi Add-on"], from: "#0284C7", to: "#0369A1" },
   { Icon: Monitor, name: "Apple TV", sub: "Apple TV 4K and Apple TV HD", tags: ["tvOS", "AirPlay"], from: "#475569", to: "#1E293B" },
 ];
