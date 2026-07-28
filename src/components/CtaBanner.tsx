@@ -18,7 +18,7 @@ const CtaBanner = () => {
           {t("cta_title_1")} <span className="text-gradient">{t("cta_title_gradient")}</span>?
         </h2>
         <p className="text-muted-foreground mb-8 max-w-md mx-auto text-sm sm:text-base">{t("cta_sub")}</p>
-        <a href="/infinitytv-iptv#pricing">
+        <a href="/streaming#pricing">
           <Button size="lg" className="bg-gradient-primary text-primary-foreground font-bold text-base sm:text-lg px-6 sm:px-10 py-4 sm:py-6 hover:opacity-90 shadow-glow">{t("cta_button")}</Button>
         </a>
         <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-6 sm:mt-8">
