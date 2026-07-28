@@ -43,7 +43,7 @@ const SetupSteps = () => {
           </div>
         </div>
         <div className="text-center mt-12">
-          <Link href="/infinitytv-iptv#pricing">
+          <Link href="/streaming#pricing">
             <Button className="bg-gradient-primary text-white font-bold hover:opacity-90 shadow-glow px-8 py-6 text-base rounded-full">{t("setup_cta")}</Button>
           </Link>
         </div>
