@@ -47,7 +47,7 @@ const ComparisonSection = () => {
                 <div className="flex items-center justify-center gap-1.5 text-primary"><Trophy size={14} /> InfinityTV</div>
               </div>
               <div className="p-3 md:p-4 text-center">Standard Cable</div>
-              <div className="p-3 md:p-4 text-center">Cheap IPTV</div>
+              <div className="p-3 md:p-4 text-center">Basic Streaming</div>
             </div>
             {rows.map((row, i) => (
               <div key={row.feature} className={`grid grid-cols-4 border-t border-border text-sm ${i % 2 === 0 ? "bg-card" : "bg-muted/20"}`}>
