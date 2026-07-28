@@ -89,12 +89,12 @@ const Navbar = () => {
   const { t } = useTranslation();
 
   const navLinks = [
-    { labelKey: "nav_home",     href: "/infinitytv-iptv" },
+    { labelKey: "nav_home",     href: "/streaming" },
     { labelKey: "nav_channels", href: "/channel-list" },
     { labelKey: "nav_install",  href: "/installation-tutorial" },
-    { labelKey: "nav_reseller", href: "/iptv-reseller" },
+    { labelKey: "nav_reseller", href: "/reseller" },
     { labelKey: "nav_affiliate",href: "/affiliation" },
-    { labelKey: "nav_pricing",  href: "/infinitytv-iptv#pricing" },
+    { labelKey: "nav_pricing",  href: "/streaming#pricing" },
   ];
 
   const isActive = (href: string) => {
@@ -123,7 +123,7 @@ const Navbar = () => {
             </Link>
           ))}
           <LangSelector />
-          <Link href="/infinitytv-iptv#pricing">
+          <Link href="/streaming#pricing">
             <Button size="sm" className="bg-gradient-primary text-primary-foreground font-semibold hover:opacity-90 shadow-glow">
               {t("nav_subscribe")}
             </Button>
@@ -157,7 +157,7 @@ const Navbar = () => {
           <div className="py-1">
             <LangSelector />
           </div>
-          <Link href="/infinitytv-iptv#pricing" onClick={() => setOpen(false)}>
+          <Link href="/streaming#pricing" onClick={() => setOpen(false)}>
             <Button size="sm" className="w-full bg-gradient-primary text-primary-foreground font-semibold">
               {t("nav_subscribe")}
             </Button>
