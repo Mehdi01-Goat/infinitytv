@@ -14,7 +14,7 @@ export const influencers: Record<string, Influencer> = {
     name: "Apdi",
     code: "APDI20",
     discount: 20,
-    platform: "youtube",
+    platform: "instagram",
     socialHandle: "@apdi",
     description: "",
   },
