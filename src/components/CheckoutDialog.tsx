@@ -7,8 +7,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CheckCircle, Loader2, ChevronDown, MessageCircle, Check, Mail, Shield, Lock } from "lucide-react";
+import { CheckCircle, Loader2, ChevronDown, MessageCircle, Check, Mail, Shield, Lock, Tag } from "lucide-react";
 import { toast } from "sonner";
+import { validatePromoCode, applyDiscount, type PromoCode } from "@/lib/promoCodes";
 
 const WHATSAPP = "14702642482";
 const SUPPORT_EMAIL = "contact@infinitytv.io";
@@ -62,12 +63,14 @@ interface CheckoutDialogProps {
   connections: string;
   planOldPrice?: string;
   planPerMonth?: string;
+  defaultPromoCode?: string;
 }
 
 const CheckoutDialog = ({
   open, onOpenChange,
   planName, planPrice, connections,
   planOldPrice, planPerMonth,
+  defaultPromoCode,
 }: CheckoutDialogProps) => {
   const [fullName, setFullName]           = useState("");
   const [email, setEmail]                 = useState("");
@@ -75,11 +78,23 @@ const CheckoutDialog = ({
   const [paymentMethod, setPaymentMethod] = useState("");
   const [promoCode, setPromoCode]         = useState("");
   const [showPromo, setShowPromo]         = useState(false);
+  const [appliedCode, setAppliedCode]     = useState<PromoCode | null>(null);
+  const [codeError, setCodeError]         = useState("");
   const [isSubmitting, setIsSubmitting]   = useState(false);
   const [isSuccess, setIsSuccess]         = useState(false);
   const [orderId, setOrderId]             = useState("");
 
-  // Fire InitiateCheckout when dialog opens
+  useEffect(() => {
+    if (defaultPromoCode && open) {
+      const validated = validatePromoCode(defaultPromoCode);
+      if (validated) {
+        setPromoCode(defaultPromoCode.toUpperCase());
+        setAppliedCode(validated);
+        setShowPromo(true);
+      }
+    }
+  }, [defaultPromoCode, open]);
+
   useEffect(() => {
     if (open && typeof window !== "undefined" && (window as any).fbq) {
       (window as any).fbq("track", "InitiateCheckout", {
@@ -90,11 +105,32 @@ const CheckoutDialog = ({
     }
   }, [open]);
 
+  const handleApplyCode = () => {
+    const validated = validatePromoCode(promoCode);
+    if (validated) {
+      setAppliedCode(validated);
+      setCodeError("");
+    } else {
+      setAppliedCode(null);
+      setCodeError("Invalid promo code");
+    }
+  };
+
   const resetForm = () => {
     setFullName(""); setEmail(""); setWhatsapp(""); setPaymentMethod("");
-    setPromoCode(""); setShowPromo(false); setIsSuccess(false); setOrderId("");
+    setPromoCode(""); setShowPromo(false);
+    setAppliedCode(null); setCodeError("");
+    setIsSuccess(false); setOrderId("");
   };
   const handleClose = (val: boolean) => { if (!val) resetForm(); onOpenChange(val); };
+
+  const effectivePrice = appliedCode
+    ? (() => {
+        const { final } = applyDiscount(planPrice, appliedCode.discount);
+        const currency = planPrice.replace(/[0-9.,\s]/g, "")[0] ?? "$";
+        return `${currency}${final}`;
+      })()
+    : planPrice;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -108,34 +144,40 @@ const CheckoutDialog = ({
       await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fullName, email, whatsapp, paymentMethod, planName, planPrice, connections, promoCode, orderId: newOrderId }),
+        body: JSON.stringify({
+          fullName, email, whatsapp, paymentMethod,
+          planName, planPrice: effectivePrice, connections,
+          promoCode: appliedCode?.code ?? promoCode,
+          orderId: newOrderId,
+        }),
       });
     } catch {
-      // silent — Telegram notification handles delivery
+      // silent
     } finally {
       setOrderId(newOrderId);
       setIsSuccess(true);
       setIsSubmitting(false);
 
-      // Fire Lead conversion event
       if (typeof window !== "undefined" && (window as any).fbq) {
         (window as any).fbq("track", "Lead", {
           content_name: planName,
           currency: "USD",
-          value: parseFloat(planPrice.replace(/[^0-9.]/g, "")),
+          value: parseFloat(effectivePrice.replace(/[^0-9.]/g, "")),
         });
       }
     }
   };
 
-  /* ── Success state ─────────────────────────────────────────────── */
   if (isSuccess) {
+    const promoLine = appliedCode
+      ? ` | Promo: ${appliedCode.code} (${appliedCode.discount}% off) → Final: ${effectivePrice}`
+      : "";
     const waMsg = encodeURIComponent(
-      `Hi! I placed order #${orderId} for the ${planName} plan (${connections}) at ${planPrice}. I'm ready to complete my payment.`
+      `Hi! I placed order #${orderId} for the ${planName} plan (${connections}) at ${planPrice}${promoLine}. I'm ready to complete my payment.`
     );
     const emailSubject = encodeURIComponent(`Order #${orderId} — Payment`);
     const emailBody = encodeURIComponent(
-      `Hi,\n\nI placed order #${orderId} for the ${planName} plan (${connections}) at ${planPrice}.\nI'm ready to complete my payment.\n\nThank you.`
+      `Hi,\n\nI placed order #${orderId} for the ${planName} plan (${connections}) at ${planPrice}${promoLine}.\nI'm ready to complete my payment.\n\nThank you.`
     );
     return (
       <Dialog open={open} onOpenChange={handleClose}>
@@ -163,7 +205,7 @@ const CheckoutDialog = ({
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Total</span>
-                <span className="font-bold text-foreground">{planPrice}</span>
+                <span className="font-bold text-foreground">{effectivePrice}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Status</span>
@@ -173,9 +215,9 @@ const CheckoutDialog = ({
 
             <div className="rounded-xl border border-border bg-secondary/40 px-4 py-3 text-sm text-center leading-relaxed text-muted-foreground space-y-1">
               <p>
-                <span className="text-foreground font-semibold">We&apos;ll reach out to you</span> with your subscription details and guide you through the full setup.
+                <span className="text-foreground font-semibold">We'll reach out to you</span> with your subscription details and guide you through the full setup.
               </p>
-              <p>Once you&apos;re ready, we&apos;ll process your payment via your preferred method — no rush.</p>
+              <p>Once you're ready, we'll process your payment via your preferred method — no rush.</p>
             </div>
 
             <div className="flex flex-col gap-2.5">
@@ -192,12 +234,12 @@ const CheckoutDialog = ({
                 </Button>
               </a>
               <p className="text-[11px] text-center text-muted-foreground pt-1">
-                Can&apos;t wait? Reach us now and we&apos;ll activate your service within <span className="text-foreground font-medium">30 minutes</span>.
+                Can't wait? Reach us now and we'll activate your service within <span className="text-foreground font-medium">30 minutes</span>.
               </p>
             </div>
 
             <button onClick={() => handleClose(false)} className="text-xs text-center text-muted-foreground hover:text-foreground transition-colors">
-              I&apos;ll wait for your message
+              I'll wait for your message
             </button>
           </div>
         </DialogContent>
@@ -205,7 +247,6 @@ const CheckoutDialog = ({
     );
   }
 
-  /* ── Order form ────────────────────────────────────────────────── */
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-md bg-card border-border max-h-[90vh] overflow-y-auto">
@@ -223,10 +264,10 @@ const CheckoutDialog = ({
         <div className="flex items-center justify-between py-3 border-y border-border">
           <span className="text-sm text-muted-foreground">Total due today</span>
           <div className="flex items-center gap-2">
-            {planOldPrice && (
-              <span className="text-xs text-muted-foreground line-through">{planOldPrice}</span>
+            {(planOldPrice || appliedCode) && (
+              <span className="text-xs text-muted-foreground line-through">{planOldPrice ?? planPrice}</span>
             )}
-            <span className="text-xl font-heading font-bold text-foreground">{planPrice}</span>
+            <span className="text-xl font-heading font-bold text-foreground">{effectivePrice}</span>
           </div>
         </div>
 
@@ -249,7 +290,7 @@ const CheckoutDialog = ({
             <Label htmlFor="whatsapp" className="text-sm">WhatsApp Number</Label>
             <Input id="whatsapp" type="tel" placeholder="+1 234 567 8900" value={whatsapp}
               onChange={(e) => setWhatsapp(e.target.value)} required />
-            <p className="text-[11px] text-muted-foreground">Recommended for faster support. No WhatsApp? We&apos;ll deliver via email.</p>
+            <p className="text-[11px] text-muted-foreground">Recommended for faster support. No WhatsApp? We'll deliver via email.</p>
           </div>
 
           <div className="space-y-2">
@@ -292,12 +333,47 @@ const CheckoutDialog = ({
               Have a promo or referral code?
             </button>
             {showPromo && (
-              <Input
-                className="mt-2"
-                placeholder="Enter code"
-                value={promoCode}
-                onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
-              />
+              <div className="mt-2 flex gap-2">
+                <Input
+                  placeholder="Enter code"
+                  value={promoCode}
+                  onChange={(e) => {
+                    setPromoCode(e.target.value.toUpperCase());
+                    setAppliedCode(null);
+                    setCodeError("");
+                  }}
+                  className={appliedCode ? "border-emerald-500/50" : codeError ? "border-red-500/50" : ""}
+                />
+                <Button type="button" variant="outline" onClick={handleApplyCode} className="shrink-0 px-4 text-xs font-semibold">
+                  Apply
+                </Button>
+              </div>
+            )}
+            {appliedCode && (
+              <div className="mt-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 space-y-1">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Original</span>
+                  <span className="line-through text-muted-foreground">{planPrice}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-emerald-400 font-semibold flex items-center gap-1">
+                    <Tag size={12} /> Code {appliedCode.code} ({appliedCode.discount}% off)
+                  </span>
+                  <span className="text-emerald-400 font-bold">
+                    -{(() => {
+                      const currency = planPrice.replace(/[0-9.,\s]/g, "")[0] ?? "$";
+                      return `${currency}${applyDiscount(planPrice, appliedCode.discount).saved}`;
+                    })()}
+                  </span>
+                </div>
+                <div className="flex justify-between text-sm font-bold border-t border-emerald-500/20 pt-1 mt-1">
+                  <span>Total due today</span>
+                  <span className="text-foreground">{effectivePrice}</span>
+                </div>
+              </div>
+            )}
+            {codeError && (
+              <p className="mt-1 text-xs text-red-400">{codeError}</p>
             )}
           </div>
 
