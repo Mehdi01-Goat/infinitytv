@@ -56,7 +56,7 @@ const plansByConnection: Record<number, Plan[]> = {
   ],
 };
 
-const PricingSection = () => {
+const PricingSection = ({ defaultPromoCode }: { defaultPromoCode?: string } = {}) => {
   const [activeTab, setActiveTab] = useState(0);
   const { t } = useTranslation();
   const [checkoutOpen, setCheckoutOpen] = useState(false);
@@ -159,7 +159,7 @@ const PricingSection = () => {
                   </span>
                 )}
 
-                {/* Card body — identical layout for all 4 */}
+                {/* Card body */}
                 <div className={`relative flex flex-col h-full rounded-2xl border px-5 pb-6 hover:shadow-glow transition-all duration-300 group ${
                   plan.recommended
                     ? "bg-[#0D0D1F] border-transparent pt-8"
@@ -293,10 +293,10 @@ const PricingSection = () => {
         connections={selectedPlan.connections}
         planOldPrice={selectedPlan.oldPrice || undefined}
         planPerMonth={selectedPlan.perMonth || undefined}
+        defaultPromoCode={defaultPromoCode}
       />
     </section>
   );
 };
 
 export default PricingSection;
-
