@@ -3,21 +3,7 @@
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { useTranslation } from "@/context/LanguageContext";
-
-const DEADLINE_KEY = "itv_offer_deadline";
-const DURATION_MS = 72 * 60 * 60 * 1000;
-
-function getDeadline(): number {
-  if (typeof window === "undefined") return Date.now() + DURATION_MS;
-  const stored = localStorage.getItem(DEADLINE_KEY);
-  if (stored) {
-    const val = parseInt(stored, 10);
-    if (val > Date.now()) return val;
-  }
-  const newDeadline = Date.now() + DURATION_MS;
-  localStorage.setItem(DEADLINE_KEY, String(newDeadline));
-  return newDeadline;
-}
+import { getOfferDeadline } from "@/lib/offerConfig";
 
 function formatCountdown(ms: number): string {
   if (ms <= 0) return "00:00:00";
@@ -30,12 +16,16 @@ function formatCountdown(ms: number): string {
 
 const AnnouncementBar = () => {
   const [visible, setVisible] = useState(true);
-  const [remaining, setRemaining] = useState<number>(DURATION_MS);
+  const [remaining, setRemaining] = useState<number | null>(null);
   const { t } = useTranslation();
 
   useEffect(() => {
-    const deadline = getDeadline();
-    const tick = () => setRemaining(Math.max(0, deadline - Date.now()));
+    const deadline = getOfferDeadline();
+    const tick = () => {
+      const left = Math.max(0, deadline - Date.now());
+      setRemaining(left);
+      if (left === 0) setVisible(false);
+    };
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
@@ -43,7 +33,6 @@ const AnnouncementBar = () => {
 
   if (!visible) return null;
 
-  // Parse <b> tags from translation string
   const announcementHtml = t("announcement")
     .replace(/<b>/g, '<strong>')
     .replace(/<\/b>/g, '</strong>');
@@ -53,7 +42,9 @@ const AnnouncementBar = () => {
       <span className="font-medium">
         <span dangerouslySetInnerHTML={{ __html: announcementHtml }} />
         <span className="mx-2 opacity-60">·</span>
-        <span className="font-mono font-bold">Ends in {formatCountdown(remaining)}</span>
+        <span className="font-mono font-bold">
+          Ends in {remaining !== null ? formatCountdown(remaining) : "..."}
+        </span>
       </span>
       <a href="#pricing" className="ml-2 sm:ml-3 underline underline-offset-2 font-bold hover:opacity-80 transition-opacity whitespace-nowrap">
         {t("announcement_cta")}
