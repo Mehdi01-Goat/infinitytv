@@ -37,18 +37,18 @@ type Plan = {
 const plansByConnection: Record<number, Plan[]> = {
   0: [
     { duration: "3 Months",  price: "$19.98",  perMonth: "$6.66",  save: "44%", saveAmount: "$15.96" },
-    { duration: "6 Months",  price: "$34.98",  perMonth: "$5.83",  save: "51%", saveAmount: "$36.90" },
     { duration: "12 Months", price: "$58.98",  perMonth: "$4.91",  save: "59%", saveAmount: "$84.78", recommended: true, oldPrice: "$143.76" },
+    { duration: "6 Months",  price: "$34.98",  perMonth: "$5.83",  save: "51%", saveAmount: "$36.90" },
   ],
   1: [
     { duration: "3 Months",  price: "$29.98",  perMonth: "$9.99",  save: "47%", saveAmount: "$26.96" },
-    { duration: "6 Months",  price: "$54.98",  perMonth: "$9.16",  save: "51%", saveAmount: "$58.90" },
     { duration: "12 Months", price: "$99.98",  perMonth: "$8.33",  save: "56%", saveAmount: "$127.78", recommended: true, oldPrice: "$227.76" },
+    { duration: "6 Months",  price: "$54.98",  perMonth: "$9.16",  save: "51%", saveAmount: "$58.90" },
   ],
   2: [
     { duration: "3 Months",  price: "$49.98",  perMonth: "$16.66", save: "33%", saveAmount: "$24.96" },
-    { duration: "6 Months",  price: "$84.98",  perMonth: "$14.16", save: "43%", saveAmount: "$64.90" },
     { duration: "12 Months", price: "$149.98", perMonth: "$12.49", save: "50%", saveAmount: "$149.78", recommended: true, oldPrice: "$299.76" },
+    { duration: "6 Months",  price: "$84.98",  perMonth: "$14.16", save: "43%", saveAmount: "$64.90" },
   ],
 };
 
@@ -169,14 +169,14 @@ const PricingSection = ({ defaultPromoCode }: { defaultPromoCode?: string } = {}
                   <div className="mb-1">
                     <div className="flex items-baseline gap-1.5">
                       <span className={`font-heading text-5xl font-black leading-none ${plan.recommended ? "text-gradient" : "text-foreground"}`}>
-                        {plan.perMonth}
+                        {plan.price}
                       </span>
-                      <span className="text-muted-foreground text-sm">/mo</span>
                     </div>
-                    <p className="text-sm text-foreground/80 font-semibold mt-1">
-                      {plan.oldPrice && <span className="line-through text-muted-foreground font-normal mr-1.5">{plan.oldPrice}</span>}
-                      {plan.price} total
-                    </p>
+                    {plan.oldPrice && (
+                      <p className="text-sm text-muted-foreground font-normal mt-1">
+                        <span className="line-through">{plan.oldPrice}</span>
+                      </p>
+                    )}
                   </div>
 
                   {/* Savings line */}
@@ -204,13 +204,10 @@ const PricingSection = ({ defaultPromoCode }: { defaultPromoCode?: string } = {}
 
                   {/* CTA */}
                   {plan.recommended ? (
-                    <>
-                      <Button onClick={() => handleOrderClick(plan)}
-                        className="w-full bg-gradient-primary text-white font-bold hover:opacity-90 shadow-glow py-5 rounded-xl text-sm mb-2">
-                        <CreditCard size={14} className="mr-1.5" /> {t("pricing_cta_recommended")}
-                      </Button>
-                      <p className="text-[10px] text-center text-primary/70 font-semibold">⚡ Activate in ~30 min</p>
-                    </>
+                    <Button onClick={() => handleOrderClick(plan)}
+                      className="w-full bg-gradient-primary text-white font-bold hover:opacity-90 shadow-glow py-5 rounded-xl text-sm">
+                      <CreditCard size={14} className="mr-1.5" /> {t("pricing_cta_recommended")}
+                    </Button>
                   ) : (
                     <Button onClick={() => handleOrderClick(plan)} variant="outline"
                       className="w-full font-semibold border-border hover:bg-primary/10 hover:border-primary/40 hover:text-primary transition-all rounded-xl py-5 text-sm">
