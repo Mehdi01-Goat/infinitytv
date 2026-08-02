@@ -99,21 +99,6 @@ const PricingSection = ({ defaultPromoCode }: { defaultPromoCode?: string } = {}
           </div>
         </div>
 
-        {/* Shared features — shown once for all plans */}
-        <div className="mb-10 rounded-2xl border border-border bg-card/60 px-6 py-5">
-          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4 text-center">Everything included in every plan</p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-2.5">
-            {features.map((f) => (
-              <div key={f} className="flex items-center gap-2 text-sm text-foreground/80">
-                <span className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 bg-primary/20 border border-primary/40">
-                  <Check size={9} className="text-primary" />
-                </span>
-                {f}
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Connection tabs */}
         <div className="flex justify-center gap-2 mb-12">
           {connectionTabs.map((tab, i) => {
@@ -203,8 +188,19 @@ const PricingSection = ({ defaultPromoCode }: { defaultPromoCode?: string } = {}
                     <div className="mb-5" />
                   )}
 
-                  {/* Spacer to push CTA to bottom */}
-                  <div className="flex-1" />
+                  {/* Features */}
+                  <ul className="space-y-2.5 mb-6 flex-1">
+                    {features.map((f) => (
+                      <li key={f} className="flex items-center gap-2.5 text-sm text-foreground/75 group-hover:text-foreground/90 transition-colors">
+                        <span className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 ${
+                          plan.recommended ? "bg-primary/20 border border-primary/40" : "bg-muted border border-border"
+                        }`}>
+                          <Check size={9} className={plan.recommended ? "text-primary" : "text-muted-foreground"} />
+                        </span>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
 
                   {/* CTA */}
                   {plan.recommended ? (
