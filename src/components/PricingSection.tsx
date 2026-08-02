@@ -32,24 +32,20 @@ type Plan = {
   oldPrice?: string;
   save?: string;
   saveAmount?: string;
-  badge?: string;
 };
 
 const plansByConnection: Record<number, Plan[]> = {
   0: [
-    { duration: "1 Month",   price: "$11.98",  perMonth: "$11.98", badge: "Most Flexible" },
     { duration: "3 Months",  price: "$19.98",  perMonth: "$6.66",  save: "44%", saveAmount: "$15.96" },
     { duration: "6 Months",  price: "$34.98",  perMonth: "$5.83",  save: "51%", saveAmount: "$36.90" },
     { duration: "12 Months", price: "$58.98",  perMonth: "$4.91",  save: "59%", saveAmount: "$84.78", recommended: true, oldPrice: "$143.76" },
   ],
   1: [
-    { duration: "1 Month",   price: "$18.98",  perMonth: "$18.98", badge: "Most Flexible" },
     { duration: "3 Months",  price: "$29.98",  perMonth: "$9.99",  save: "47%", saveAmount: "$26.96" },
     { duration: "6 Months",  price: "$54.98",  perMonth: "$9.16",  save: "51%", saveAmount: "$58.90" },
     { duration: "12 Months", price: "$99.98",  perMonth: "$8.33",  save: "56%", saveAmount: "$127.78", recommended: true, oldPrice: "$227.76" },
   ],
   2: [
-    { duration: "1 Month",   price: "$24.98",  perMonth: "$24.98", badge: "Most Flexible" },
     { duration: "3 Months",  price: "$49.98",  perMonth: "$16.66", save: "33%", saveAmount: "$24.96" },
     { duration: "6 Months",  price: "$84.98",  perMonth: "$14.16", save: "43%", saveAmount: "$64.90" },
     { duration: "12 Months", price: "$149.98", perMonth: "$12.49", save: "50%", saveAmount: "$149.78", recommended: true, oldPrice: "$299.76" },
@@ -103,6 +99,21 @@ const PricingSection = ({ defaultPromoCode }: { defaultPromoCode?: string } = {}
           </div>
         </div>
 
+        {/* Shared features — shown once for all plans */}
+        <div className="mb-10 rounded-2xl border border-border bg-card/60 px-6 py-5">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4 text-center">Everything included in every plan</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-2.5">
+            {features.map((f) => (
+              <div key={f} className="flex items-center gap-2 text-sm text-foreground/80">
+                <span className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 bg-primary/20 border border-primary/40">
+                  <Check size={9} className="text-primary" />
+                </span>
+                {f}
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Connection tabs */}
         <div className="flex justify-center gap-2 mb-12">
           {connectionTabs.map((tab, i) => {
@@ -129,7 +140,7 @@ const PricingSection = ({ defaultPromoCode }: { defaultPromoCode?: string } = {}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch"
           >
             {plansByConnection[activeTab].map((plan, i) => (
               <motion.div
@@ -147,15 +158,10 @@ const PricingSection = ({ defaultPromoCode }: { defaultPromoCode?: string } = {}
                   </span>
                 )}
 
-                {/* Save / flexible badge */}
+                {/* Save badge */}
                 {!plan.recommended && plan.save && (
                   <span className="absolute -top-3 right-4 bg-emerald-500 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full z-10">
                     SAVE {plan.save}
-                  </span>
-                )}
-                {!plan.recommended && plan.badge && (
-                  <span className="absolute -top-3 right-4 bg-secondary border border-border text-muted-foreground text-[10px] font-semibold px-2.5 py-0.5 rounded-full z-10">
-                    {plan.badge}
                   </span>
                 )}
 
@@ -184,7 +190,7 @@ const PricingSection = ({ defaultPromoCode }: { defaultPromoCode?: string } = {}
                     </div>
                     <p className="text-sm text-foreground/80 font-semibold mt-1">
                       {plan.oldPrice && <span className="line-through text-muted-foreground font-normal mr-1.5">{plan.oldPrice}</span>}
-                      {plan.duration === "1 Month" ? "Billed monthly" : `${plan.price} total`}
+                      {plan.price} total
                     </p>
                   </div>
 
@@ -197,19 +203,8 @@ const PricingSection = ({ defaultPromoCode }: { defaultPromoCode?: string } = {}
                     <div className="mb-5" />
                   )}
 
-                  {/* Features */}
-                  <ul className="space-y-2.5 mb-6 flex-1">
-                    {features.map((f) => (
-                      <li key={f} className="flex items-center gap-2.5 text-sm text-foreground/75 group-hover:text-foreground/90 transition-colors">
-                        <span className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 ${
-                          plan.recommended ? "bg-primary/20 border border-primary/40" : "bg-muted border border-border"
-                        }`}>
-                          <Check size={9} className={plan.recommended ? "text-primary" : "text-muted-foreground"} />
-                        </span>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Spacer to push CTA to bottom */}
+                  <div className="flex-1" />
 
                   {/* CTA */}
                   {plan.recommended ? (
