@@ -36,19 +36,19 @@ type Plan = {
 
 const plansByConnection: Record<number, Plan[]> = {
   0: [
-    { duration: "3 Months",  price: "$19.98",  perMonth: "$6.66",  save: "44%", saveAmount: "$15.96" },
-    { duration: "12 Months", price: "$58.98",  perMonth: "$4.91",  save: "59%", saveAmount: "$84.78", recommended: true, oldPrice: "$143.76" },
-    { duration: "6 Months",  price: "$34.98",  perMonth: "$5.83",  save: "51%", saveAmount: "$36.90" },
+    { duration: "3 Months",  price: "$29",     perMonth: "$9.67",  save: "44%", saveAmount: "$23.17" },
+    { duration: "12 Months", price: "$85.98",  perMonth: "$7.17",  save: "59%", saveAmount: "$123.07", recommended: true, oldPrice: "$208.76" },
+    { duration: "6 Months",  price: "$50.98",  perMonth: "$8.50",  save: "51%", saveAmount: "$53.56" },
   ],
   1: [
-    { duration: "3 Months",  price: "$29.98",  perMonth: "$9.99",  save: "47%", saveAmount: "$26.96" },
-    { duration: "12 Months", price: "$99.98",  perMonth: "$8.33",  save: "56%", saveAmount: "$127.78", recommended: true, oldPrice: "$227.76" },
-    { duration: "6 Months",  price: "$54.98",  perMonth: "$9.16",  save: "51%", saveAmount: "$58.90" },
+    { duration: "3 Months",  price: "$43.98",  perMonth: "$14.66", save: "47%", saveAmount: "$39.13" },
+    { duration: "12 Months", price: "$145.98", perMonth: "$12.17", save: "56%", saveAmount: "$185.48", recommended: true, oldPrice: "$330.76" },
+    { duration: "6 Months",  price: "$79.98",  perMonth: "$13.33", save: "51%", saveAmount: "$85.50" },
   ],
   2: [
-    { duration: "3 Months",  price: "$49.98",  perMonth: "$16.66", save: "33%", saveAmount: "$24.96" },
-    { duration: "12 Months", price: "$149.98", perMonth: "$12.49", save: "50%", saveAmount: "$149.78", recommended: true, oldPrice: "$299.76" },
-    { duration: "6 Months",  price: "$84.98",  perMonth: "$14.16", save: "43%", saveAmount: "$64.90" },
+    { duration: "3 Months",  price: "$72.98",  perMonth: "$24.33", save: "33%", saveAmount: "$36.23" },
+    { duration: "12 Months", price: "$217.98", perMonth: "$18.17", save: "50%", saveAmount: "$217.42", recommended: true, oldPrice: "$435.76" },
+    { duration: "6 Months",  price: "$123.98", perMonth: "$20.66", save: "43%", saveAmount: "$94.22" },
   ],
 };
 
