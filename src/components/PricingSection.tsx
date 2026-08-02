@@ -36,7 +36,7 @@ type Plan = {
 
 const plansByConnection: Record<number, Plan[]> = {
   0: [
-    { duration: "3 Months",  price: "$29",     perMonth: "$9.67",  save: "44%", saveAmount: "$23.17" },
+    { duration: "3 Months",  price: "$28.98", perMonth: "$9.67",  save: "44%", saveAmount: "$23.17" },
     { duration: "12 Months", price: "$85.98",  perMonth: "$7.17",  save: "59%", saveAmount: "$123.07", recommended: true, oldPrice: "$208.76" },
     { duration: "6 Months",  price: "$50.98",  perMonth: "$8.50",  save: "51%", saveAmount: "$53.56" },
   ],
