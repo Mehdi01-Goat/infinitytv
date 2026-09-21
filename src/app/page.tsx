@@ -1,5 +1,129 @@
-import { permanentRedirect } from "next/navigation";
+import type { Metadata } from "next";
+import AnnouncementBar from "@/components/AnnouncementBar";
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import FeaturesGrid from "@/components/FeaturesGrid";
+import TrendingSection from "@/components/TrendingSection";
+import PricingSection from "@/components/PricingSection";
+import DevicesSection from "@/components/DevicesSection";
+import SetupSteps from "@/components/SetupSteps";
+import ComparisonSection from "@/components/ComparisonSection";
+import ReviewsSection from "@/components/ReviewsSection";
+import FaqSection from "@/components/FaqSection";
+import ContactSection from "@/components/ContactSection";
+import CtaBanner from "@/components/CtaBanner";
+import Footer from "@/components/Footer";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 
-export default function Root() {
-  permanentRedirect("/streaming");
+export const metadata: Metadata = {
+  title: "InfinityTV — Premium Streaming Service | 22,000+ Channels",
+  description: "InfinityTV: Stream 22,000+ live channels and 95,000+ movies in 4K with zero buffering. Anti-freeze technology. Instant setup on any device. From €4.91/month.",
+  alternates: {
+    canonical: "https://www.infinitytv.io/",
+  },
+};
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BroadcastService",
+      "@id": "https://www.infinitytv.io/#service",
+      "name": "InfinityTV",
+      "description": "Premium streaming service with 22,000+ live channels and 95,000+ VODs in 4K. Anti-buffering technology, instant setup, works on all devices including Smart TV, Firestick, iOS, Android, Windows, and MAG.",
+      "url": "https://www.infinitytv.io/",
+      "broadcastDisplayName": "InfinityTV",
+      "inLanguage": ["en", "fr", "de", "es", "nl"],
+      "provider": {
+        "@type": "Organization",
+        "@id": "https://www.infinitytv.io/#organization",
+      },
+      "areaServed": ["FR", "DE", "NL", "ES", "GB", "US", "CA", "AU"],
+      "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": "4.91",
+        "highPrice": "149.98",
+        "priceCurrency": "EUR",
+        "offerCount": "12",
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "1200",
+        "bestRating": "5",
+        "worstRating": "1",
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "When will I get my subscription activated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Once we receive your order, our team will activate your InfinityTV subscription based on your details (duration, number of connections, device). You will receive it after we complete the payment process, typically within 30 minutes.",
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "What devices are supported by InfinityTV?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "InfinityTV supports all major devices including Smart TVs (Samsung, LG, Android TV), Amazon Firestick, iOS, Android, Windows, macOS, Linux, and MAG devices.",
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "What channels are included in InfinityTV?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "InfinityTV includes 22,000+ live channels from around the world, including sports (PPV, UFC, NFL, NHL, NBA), movies, news, entertainment, and international channels in multiple languages including French, German, Spanish, and Dutch.",
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "Does InfinityTV have a refund policy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, InfinityTV offers a 7-day money-back guarantee. If you are not satisfied with the service, contact our support team for a full refund.",
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "What payment methods does InfinityTV accept?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "InfinityTV accepts Credit/Debit cards, PayPal, Crypto, E-Transfer, MoneyGram, and Western Union. All payments are processed securely and subscriptions are activated within 30 minutes of payment.",
+          },
+        },
+      ],
+    },
+  ],
+};
+
+export default function Home() {
+  return (
+    <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
+      />
+      <AnnouncementBar />
+      <Navbar />
+      <HeroSection />
+      <FeaturesGrid />
+      <TrendingSection />
+      <PricingSection />
+      <DevicesSection />
+      <SetupSteps />
+      <ComparisonSection />
+      <ReviewsSection />
+      <FaqSection />
+      <ContactSection />
+      <CtaBanner />
+      <Footer />
+      <WhatsAppFloat />
+    </div>
+  );
 }
