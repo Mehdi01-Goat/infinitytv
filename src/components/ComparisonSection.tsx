@@ -10,7 +10,6 @@ const rows = [
   { feature: "VOD Library", cable: "Limited / PPV", prime: "95,000+ Movies & Series", others: "Rarely Updated", primeGood: true, cableGood: false, othersGood: false },
   { feature: "Anti-Freeze Server", cable: "N/A", prime: "Yes — 99.9% Uptime", others: "No — Frequent Buffering", primeGood: true, cableGood: false, othersGood: false },
   { feature: "Catch-Up TV", cable: "Requires DVR", prime: "Yes — 7-Day Replay", others: "Usually Broken", primeGood: true, cableGood: false, othersGood: false },
-  { feature: "Monthly Cost", cable: "$80 – $120 / mo", prime: "$7.17 – $9.67 / mo", others: "~$5 / mo", primeGood: true, cableGood: false, othersGood: null },
   { feature: "Setup Time", cable: "Requires Technician", prime: "Instant — 2 Minutes", others: "Complex / Unsafe", primeGood: true, cableGood: false, othersGood: false },
 ];
 

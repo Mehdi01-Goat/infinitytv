@@ -13,7 +13,7 @@ type TranslationMap = Record<string, string | string[]>;
 export const translations: Record<Locale, TranslationMap> = {
   en: {
     // Announcement
-    announcement: "🎉 Limited Time: Get <b>50% OFF</b> with our Annual Plan — <b>$7.17/month</b>",
+    announcement: "🎉 Limited Time: Get <b>59% OFF</b> with our Annual Plan — <b>$7.17/month</b>",
     announcement_cta: "Claim Offer →",
     // Hero
     hero_words: ["Movies", "Live Sports", "Breaking News", "Your Favorites"],
@@ -154,7 +154,7 @@ export const translations: Record<Locale, TranslationMap> = {
   },
 
   fr: {
-    announcement: "🎉 Offre limitée : <b>50% DE RÉDUCTION</b> sur notre forfait annuel — <b>$7.17/mois</b>",
+    announcement: "🎉 Offre limitée : <b>59% DE RÉDUCTION</b> sur notre forfait annuel — <b>$7.17/mois</b>",
     announcement_cta: "Profiter de l'offre →",
     hero_words: ["Films", "Sports en Direct", "Actualités", "Vos Favoris"],
     hero_headline_prefix: "Regardez",
@@ -282,7 +282,7 @@ export const translations: Record<Locale, TranslationMap> = {
   },
 
   de: {
-    announcement: "🎉 Zeitlich begrenzt: <b>50% RABATT</b> auf unseren Jahresplan — <b>$7.17/Monat</b>",
+    announcement: "🎉 Zeitlich begrenzt: <b>59% RABATT</b> auf unseren Jahresplan — <b>$7.17/Monat</b>",
     announcement_cta: "Angebot sichern →",
     hero_words: ["Filme", "Live-Sport", "Aktuelle Nachrichten", "Ihre Favoriten"],
     hero_headline_prefix: "Streame",
@@ -410,7 +410,7 @@ export const translations: Record<Locale, TranslationMap> = {
   },
 
   es: {
-    announcement: "🎉 Tiempo Limitado: <b>50% DE DESCUENTO</b> con nuestro Plan Anual — <b>$7.17/mes</b>",
+    announcement: "🎉 Tiempo Limitado: <b>59% DE DESCUENTO</b> con nuestro Plan Anual — <b>$7.17/mes</b>",
     announcement_cta: "Obtener oferta →",
     hero_words: ["Películas", "Deportes en Vivo", "Noticias", "Tus Favoritos"],
     hero_headline_prefix: "Transmite",
@@ -538,7 +538,7 @@ export const translations: Record<Locale, TranslationMap> = {
   },
 
   nl: {
-    announcement: "🎉 Beperkte Tijd: <b>50% KORTING</b> op ons Jaarplan — <b>$7.17/maand</b>",
+    announcement: "🎉 Beperkte Tijd: <b>59% KORTING</b> op ons Jaarplan — <b>$7.17/maand</b>",
     announcement_cta: "Claim aanbieding →",
     hero_words: ["Films", "Live Sport", "Nieuws", "Uw Favorieten"],
     hero_headline_prefix: "Stream",
