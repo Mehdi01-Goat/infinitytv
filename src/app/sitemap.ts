@@ -11,7 +11,7 @@ const blogSlugs = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://www.infinitytv.io";
   return [
-    { url: `${base}/streaming`, lastModified: "2026-05-30", changeFrequency: "weekly", priority: 1.0 },
+    { url: `${base}/`, lastModified: "2026-09-29", changeFrequency: "weekly", priority: 1.0 },
     { url: `${base}/blog`, lastModified: "2026-05-30", changeFrequency: "weekly", priority: 0.9 },
     ...blogSlugs.map((slug) => ({
       url: `${base}/blog/${slug}`,

@@ -17,7 +17,7 @@ import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 export const metadata: Metadata = {
   title: "InfinityTV — Premium Streaming Service | 22,000+ Channels",
-  description: "InfinityTV: Stream 22,000+ live channels and 95,000+ movies in 4K with zero buffering. Anti-freeze technology. Instant setup on any device. From €4.91/month.",
+  description: "InfinityTV: Stream 22,000+ live channels and 95,000+ movies in 4K with zero buffering. Anti-freeze technology. Instant setup on any device. Plans from $28.98.",
   alternates: {
     canonical: "https://www.infinitytv.io/",
   },
@@ -41,10 +41,10 @@ const pageSchema = {
       "areaServed": ["FR", "DE", "NL", "ES", "GB", "US", "CA", "AU"],
       "offers": {
         "@type": "AggregateOffer",
-        "lowPrice": "4.91",
-        "highPrice": "149.98",
-        "priceCurrency": "EUR",
-        "offerCount": "12",
+        "lowPrice": "28.98",
+        "highPrice": "217.98",
+        "priceCurrency": "USD",
+        "offerCount": "9",
       },
       "aggregateRating": {
         "@type": "AggregateRating",

@@ -25,7 +25,7 @@ When choosing a streaming service in France, the most important factors are chan
 
 ## Why InfinityTV Works for French Viewers
 
-InfinityTV includes 22,000+ channels including a full French channel package. With plans starting from €4.91/month on the annual plan, it's one of the most competitive options available. The service uses anti-buffering technology and activates within 30 minutes of ordering.
+InfinityTV includes 22,000+ channels including a full French channel package. With plans starting from $7.17/month on the annual plan, it's one of the most competitive options available. The service uses anti-buffering technology and activates within 30 minutes of ordering.
 
 A 24-hour free trial is available — just contact support via WhatsApp to request it before committing.
 
@@ -36,7 +36,7 @@ A 24-hour free trial is available — just contact support via WhatsApp to reque
 3. Receive your credentials and setup guide within 30 minutes
 4. Install on your preferred device and start watching
 
-[Start your free trial →](/streaming)
+[Start your free trial →](/)
     `,
   },
   "watch-bundesliga-online": {
@@ -55,7 +55,7 @@ The Bundesliga is one of the most-watched football leagues in the world, but tra
 
 ## Why streaming is the Best Value for Bundesliga Fans
 
-With a streaming service like InfinityTV, you get access to Bundesliga matches along with 22,000+ other channels — sports from around the world, including NFL, NBA, UFC, and Premier League — all for a single monthly price starting from €4.91/month.
+With a streaming service like InfinityTV, you get access to Bundesliga matches along with 22,000+ other channels — sports from around the world, including NFL, NBA, UFC, and Premier League — all for a single monthly price starting from $7.17/month.
 
 This beats paying separately for multiple streaming services.
 
@@ -67,7 +67,7 @@ This beats paying separately for multiple streaming services.
 4. Find the Bundesliga channel in the sports section
 5. Watch live in HD or 4K
 
-[Get started from €4.91/month →](/streaming)
+[Get started from $7.17/month →](/)
     `,
   },
   "setup-firestick-smart-tv": {
@@ -118,7 +118,7 @@ Your channel list will load automatically. Browse by category or use the EPG gui
 
 ## Getting Your streaming Credentials
 
-[Order InfinityTV here →](/streaming) and receive your M3U URL and Xtream Codes credentials within 30 minutes. Support is available via WhatsApp for help with any setup step.
+[Order InfinityTV here →](/) and receive your M3U URL and Xtream Codes credentials within 30 minutes. Support is available via WhatsApp for help with any setup step.
     `,
   },
   "streaming-vs-cable-comparison": {
@@ -131,7 +131,7 @@ Millions of households are cutting the cord and switching to streaming. Here's a
 
 **Cable TV:** Typically €30–€80/month depending on your package and provider.
 
-**streaming:** Premium services like InfinityTV start from €4.91/month. Even the monthly plan at €11.98 is a fraction of cable costs.
+**streaming:** Premium services like InfinityTV start from $7.17/month. Even the 3-month plan at $28.98 is a fraction of cable costs.
 
 **Winner: streaming** — significantly cheaper for the same or more channels.
 
@@ -163,7 +163,7 @@ Millions of households are cutting the cord and switching to streaming. Here's a
 
 For most users in 2025, streaming offers better value, more content, and more flexibility than cable TV. The only reason to keep cable is if your internet connection is unreliable.
 
-[Try InfinityTV free for 24 hours →](/streaming)
+[Try InfinityTV free for 24 hours →](/)
     `,
   },
   "best-streaming-service-germany-2025": {
@@ -189,13 +189,13 @@ A quality streaming service for Germany should include:
 
 ## Why InfinityTV Is a Strong Choice for Germany
 
-InfinityTV includes all major German channels plus 22,000+ international channels. Plans start at €4.91/month (annual plan) with support available in German, English, French, Spanish, and Dutch.
+InfinityTV includes all major German channels plus 22,000+ international channels. Plans start at $7.17/month (annual plan) with support available in German, English, French, Spanish, and Dutch.
 
 The service activates within 30 minutes and includes a 7-day money-back guarantee — so there's no risk in trying it.
 
 **Free 24-hour trial:** Contact InfinityTV via WhatsApp before ordering to get a free trial on your device.
 
-[View InfinityTV plans →](/streaming)
+[View InfinityTV plans →](/)
     `,
   },
 };

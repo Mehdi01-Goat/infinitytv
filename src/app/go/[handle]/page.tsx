@@ -21,6 +21,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function InfluencerPage({ params }: Props) {
   const { handle } = await params;
   const inf = getInfluencer(handle);
-  if (!inf) redirect("/streaming");
+  if (!inf) redirect("/");
   return <InfluencerLandingClient influencer={inf!} />;
 }

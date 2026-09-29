@@ -12,8 +12,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.infinitytv.io"),
   title: "InfinityTV — Premium Streaming Service | 22,000+ Channels",
-  description: "Stream 22,000+ live channels and 95,000+ movies in 4K with zero buffering. Anti-freeze technology. Instant setup on any device. Starting from €4.91/month.",
+  description: "Stream 22,000+ live channels and 95,000+ movies in 4K with zero buffering. Anti-freeze technology. Instant setup on any device. Plans from $28.98.",
   keywords: "streaming, live TV, channels, sports, movies, 4K, premium streaming",
   verification: {
     google: "5TpyzPvkGjA5ywQZg12VeY0CgEUVPSQ652ECzQtv6Gw",
@@ -28,14 +29,12 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "InfinityTV — Premium Streaming Service",
-    description: "22,000+ live channels & 95,000+ movies in 4K. From €4.91/mo.",
-    url: "https://www.infinitytv.io/streaming",
+    description: "22,000+ live channels & 95,000+ movies in 4K. Plans from $28.98.",
+    url: "https://www.infinitytv.io/",
     siteName: "InfinityTV",
     images: [
       {
         url: "https://www.infinitytv.io/assets/logo-mark.png",
-        width: 1200,
-        height: 630,
         alt: "InfinityTV — Premium Streaming Service",
       },
     ],
